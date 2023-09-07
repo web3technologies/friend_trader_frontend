@@ -73,6 +73,7 @@ function App() {
             <div>
                 <h1 style={{ margin: 0, fontSize: "20px", color: "#333" }}>{userData.twitter_username}</h1>
                 <p style={{ margin: "4px 0 0 0", fontSize: "14px", color: "#888" }}>ShareSupply: {userData.shares_supply}</p>
+                <p style={{ margin: "4px 0 0 0", fontSize: "14px", color: "#888" }}>Followers: {userData.twitter_followers ? userData.twitter_followers.toLocaleString() : null}</p>
             </div>
         </div>
 
