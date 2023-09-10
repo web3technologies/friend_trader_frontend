@@ -3,6 +3,8 @@ import { useTheme } from '../context/ThemeContext';
 import useCandleStickData from "../hooks/usecandlestickdata"
 import UserDetailCard from '../components/userdetailcard';
 import TradeCard from '../components/tradecard';
+import TradeList from '../components/tradelist';
+
 
 function FriendTechUserDetail(){
 
@@ -57,6 +59,7 @@ function FriendTechUserDetail(){
             <div className="space-y-6"> 
                 <UserDetailCard userData={userData}/>
                 <TradeCard/>
+                <TradeList address={userData.address}/>
             </div>
             
         </div>

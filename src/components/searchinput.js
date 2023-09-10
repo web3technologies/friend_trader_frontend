@@ -14,7 +14,6 @@ const SearchInput = ({ isModal }) => {
         setUserList([])
     }
     
-    
     return (
         <div className={`relative ${isModal ? '' : 'w-56 ml-4 hidden md:block'}`}>
         <input

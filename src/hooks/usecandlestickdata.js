@@ -15,7 +15,6 @@ export default function useCandleStickData(twitterUsername){
       const url = `http://localhost:8000/friend-trader/friend-tech-user/${twitterUsername}/?interval=${candleStickInterval}`;
       try {
           const userDataRes = await axios.get(url);
-          console.log(userDataRes)
           setUserData(userDataRes.data);
         } catch (e) {
             console.log(e);
