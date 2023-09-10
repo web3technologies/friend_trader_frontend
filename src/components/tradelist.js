@@ -23,7 +23,7 @@ const TradeList = (address)=>{
                         <div className="flex-1">
                             <p className="text-gray-900 dark:text-light-foreground font-medium">@{trade.trader.twitter_username}</p>
                             <p className={`text-sm ${trade.is_buy ? 'text-green-500' : 'text-red-500'}`}>
-                                {trade.is_buy ? 'Bought' : 'Sold'} at ${parseFloat(trade.price).toFixed(2)}
+                                {trade.is_buy ? 'Bought' : 'Sold'} at Ξ{parseFloat(trade.price).toFixed(2)}
                             </p>
                             <p className="text-xs text-gray-500">{new Date(trade.block.block_timestamp * 1000).toLocaleString()}</p>
                         </div>
