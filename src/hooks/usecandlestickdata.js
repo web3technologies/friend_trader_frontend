@@ -8,7 +8,7 @@ export default function useCandleStickData(twitterUsername){
     const chartContainerRef = useRef(null);
     const rsiContainerRef = useRef(null);
     const [ userData, setUserData ] = useState({candle_stick_data: []})
-    const [ candleStickInterval, setCandleStickInterval] = useState(14400)
+    const [ candleStickInterval, setCandleStickInterval] = useState("14400")
 
 
     async function getData(){

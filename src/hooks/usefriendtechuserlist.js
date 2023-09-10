@@ -10,7 +10,6 @@ export default function useFriendTechUserList(){
     const [ userList, setUserList ] = useState([])
 
     const debounedSearch = debounce(async (twitterUsername) => {
-        console.log(twitterUsername)
 
         const url = `http://localhost:8000/friend-trader/${urls.friendTechUserList}/?twitterUsername=${twitterUsername}`;
         try {
