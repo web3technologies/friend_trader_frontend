@@ -17,33 +17,41 @@ function App() {
 
     const { theme } = useTheme();
 
+    const buttonClass = hoverBg => {
+        return `
+        px-3 py-1 
+        text-sm 
+        border border-gray-400 dark:border-gray-600 
+        rounded 
+        transition-transform transform hover:scale-105 
+        ${theme === 'light' ? 'hover:bg-gradient-to-r hover:from-blue-300 hover:to-pink-400 text-gray-800' : 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-500 text-white'} 
+        ${hoverBg} 
+        cursor-pointer`;
+    };
+
     return (
         <>
         <Header/>
         <Sidebar/>
         <div className={`flex items-start justify-between h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
-            <div className="flex-1 flex flex-col space-y-6 pr-6">
+        <div className="flex-1 flex flex-col space-y-6 pr-6">
                 <div className={`${theme === 'light' ? 'bg-white' : 'bg-dark-secondary'} p-4 rounded shadow overflow-hidden relative`}>
                     {/* Time Interval Select Menu */}
-                    <div className="absolute top-4 right-4">
-                        <select 
-                            className="p-2 border dark:border-gray-700 rounded text-gray-600 dark:bg-dark-secondary dark:text-light-foreground"
-                            onChange={handleDropdownChange}
-                        >
-                            <option value="300">5 minutes</option>
-                            <option value="3600">1 hour</option>
-                            <option value="14400">4 hours</option>
-                        </select>
+                    <div className="flex justify-end space-x-4 mb-4">
+                        <button className={buttonClass()} onClick={() => handleDropdownChange({ target: { value: "300" } })}>5 minutes</button>
+                        <button className={buttonClass()} onClick={() => handleDropdownChange({ target: { value: "3600" } })}>1 hour</button>
+                        <button className={buttonClass()} onClick={() => handleDropdownChange({ target: { value: "14400" } })}>4 hours</button>
+                        <button className={buttonClass()} onClick={() => handleDropdownChange({ target: { value: "86400" } })}>1 day</button>
                     </div>
                     <div ref={chartContainerRef}>
                         {/* Chart will be rendered here */}
                     </div>
                 </div>
-                
                 <div ref={rsiContainerRef} className={`${theme === 'light' ? 'bg-white' : 'bg-dark-secondary'} p-4 rounded shadow h-1/5 overflow-hidden`}>
                     {/* RSI will be rendered here */}
                 </div>
             </div>
+
             <div className="max-w-md w-full bg-white dark:bg-dark-secondary rounded shadow p-4 space-y-6 overflow-y-auto">
                 <div className="flex items-center justify-center border-b dark:border-gray-700 pb-4">
                     <img 
