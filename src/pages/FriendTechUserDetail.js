@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import useCandleStickData from "../hooks/usecandlestickdata"
 import UserDetailCard from '../components/userdetailcard';
-
+import TradeCard from '../components/tradecard';
 
 function FriendTechUserDetail(){
 
@@ -54,8 +54,11 @@ function FriendTechUserDetail(){
                         {/* RSI will be rendered here */}
                     </div>
                 </div>
-
-            <UserDetailCard userData={userData}/>
+            <div className="space-y-6"> 
+                <UserDetailCard userData={userData}/>
+                <TradeCard/>
+            </div>
+            
         </div>
     )
 }
