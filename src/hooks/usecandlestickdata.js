@@ -4,18 +4,15 @@ import { RSI } from 'technicalindicators';
 import axios from 'axios';
 
 
-export default function useCandleStickData(){
+export default function useCandleStickData(twitterUsername){
     const chartContainerRef = useRef(null);
     const rsiContainerRef = useRef(null);
     const [ userData, setUserData ] = useState({candle_stick_data: []})
-    const [ searchState, setSearchState ] = useState(null)
+    const [ candleStickInterval, setCandleStickInterval] = useState(14400)
 
-    const handleDropdownChange = (e) => {
-      getData(e.target.value);
-  }
 
-    async function getData(interval){
-      const url = `http://localhost:8000/friend-trader/friend-tech-user/${searchState}/?interval=${interval}`;
+    async function getData(){
+      const url = `http://localhost:8000/friend-trader/friend-tech-user/${twitterUsername}/?interval=${candleStickInterval}`;
       try {
           const userDataRes = await axios.get(url);
           console.log(userDataRes)
@@ -24,8 +21,13 @@ export default function useCandleStickData(){
             console.log(e);
         }
     }
+
+    useEffect(()=>{
+        getData()
+    }, [candleStickInterval, twitterUsername])
     
     useEffect(() => {
+
       const chart = createChart(chartContainerRef.current, {
         width: window.innerWidth * .65,
         height: window.innerHeight * 0.6, 
@@ -132,9 +134,7 @@ export default function useCandleStickData(){
         chartContainerRef,
         rsiContainerRef,
         userData,
-        getData,
-        setSearchState,
-        handleDropdownChange
+        setCandleStickInterval
     }
 
 }

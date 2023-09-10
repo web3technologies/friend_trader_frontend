@@ -22,5 +22,5 @@ export default function useFriendTechUserList(){
         }
     }, 300)
 
-    return { userList, debounedSearch }
+    return { userList, debounedSearch, setUserList }
 }
