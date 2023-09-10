@@ -9,13 +9,12 @@ export default function useCandleStickData(){
     const rsiContainerRef = useRef(null);
     const [ userData, setUserData ] = useState({candle_stick_data: []})
     const [ searchState, setSearchState ] = useState(null)
-    const [ interval, setInterval ] = useState(300)
 
     const handleDropdownChange = (e) => {
-      setInterval(e.target.value);
+      getData(e.target.value);
   }
 
-    async function getData(){
+    async function getData(interval){
       const url = `http://localhost:8000/friend-trader/friend-tech-users/${searchState}/?interval=${interval}`;
       try {
           const userDataRes = await axios.get(url);
@@ -55,6 +54,7 @@ export default function useCandleStickData(){
         timeScale: {
             rightOffset: 50,
             barSpacing: 3,
+            borderColor: '#555',
         },
         layout: {
             backgroundColor: '#ffffff',
@@ -70,9 +70,6 @@ export default function useCandleStickData(){
         },
         priceScale: {
             autoScale: true,
-            borderColor: '#555',
-        },
-        timeScale: {
             borderColor: '#555',
         },
         localization: {
