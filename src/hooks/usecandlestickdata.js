@@ -134,7 +134,8 @@ export default function useCandleStickData(twitterUsername){
         chartContainerRef,
         rsiContainerRef,
         userData,
-        setCandleStickInterval
+        setCandleStickInterval,
+        candleStickInterval
     }
 
 }
