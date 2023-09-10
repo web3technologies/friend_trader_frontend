@@ -15,7 +15,7 @@ export default function useCandleStickData(){
   }
 
     async function getData(interval){
-      const url = `http://localhost:8000/friend-trader/friend-tech-users/${searchState}/?interval=${interval}`;
+      const url = `http://localhost:8000/friend-trader/friend-tech-user/${searchState}/?interval=${interval}`;
       try {
           const userDataRes = await axios.get(url);
           console.log(userDataRes)
