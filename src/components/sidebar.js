@@ -1,8 +1,10 @@
 import { FaTimes } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const { theme, isSidebarOpen, toggleSidebarOpen } = useTheme();
+  const navigate = useNavigate();
 
   const linkClass = () => {
     return `block px-4 py-2 rounded-lg transition-transform transform hover:scale-105 ${theme === 'light' ? 'hover:bg-gradient-to-r hover:from-blue-300 hover:to-pink-400 text-gray-800' : 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-500 text-white'} hover:text-white`;
@@ -23,12 +25,8 @@ const Sidebar = () => {
 
           {/* Navigation Links */}
           <ul className="space-y-4 p-4">
-            <li><a href="#dashboard" className={linkClass()}>Dashboard</a></li>
-            <li><a href="#profile" className={linkClass()}>Twitter User Profile</a></li>
+            <li><a href="#dashboard" className={linkClass()} onClick={()=>navigate("")}>Dashboard</a></li>
             <li><a href="#trade" className={linkClass()}>Trade</a></li>
-            <li><a href="#settings" className={linkClass()}>Settings</a></li>
-            <li><a href="#notifications" className={linkClass()}>Notifications</a></li>
-            <li><a href="#history" className={linkClass()}>Historical Data</a></li>
           </ul>
         </div>
       )}
