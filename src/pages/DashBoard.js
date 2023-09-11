@@ -1,8 +1,13 @@
 import React from 'react'
+import PortfolioOverview from '../components/portfoliooverview'
+import OverviewMetrics from '../components/portfoliooverview'
 
 function DashBoard() {
   return (
-    <div>DashBoard</div>
+    <div>
+        {/* <PortfolioOverview/> */}
+        <OverviewMetrics/>
+    </div>
   )
 }
 
