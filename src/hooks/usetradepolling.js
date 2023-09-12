@@ -5,7 +5,7 @@ import axios from 'axios';
 const url = `http://localhost:8000/friend-trader/trade/`;
 
 
-function usePolling( interval = 10000) {
+function useTradePolling( interval = 10000) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -16,7 +16,24 @@ function usePolling( interval = 10000) {
     async function getData(){
         try {
             const userDataRes = await axios.get(url);
-            setData(prevTrades => [...userDataRes.data, ...prevTrades]);
+            setData(prevTrades => {
+                let tradesToAdd = []
+                for (let i = 0; i < userDataRes.data.length; i++){
+                    let currentHash = userDataRes.data[i].hash;
+                    let hashExists = false;
+                    for (let j = 0; j < prevTrades.length; j++){
+                        if (currentHash === prevTrades[j].hash){
+                            hashExists = true;
+                            break;
+                        }
+                    }
+                    if(!hashExists){
+                        tradesToAdd.push(userDataRes.data[i])
+                    }
+                    
+                }
+                return [...tradesToAdd, ...prevTrades]
+            })
             setLoading(false);
         } catch (e) {
             console.log(e);
@@ -72,4 +89,4 @@ function usePolling( interval = 10000) {
     return { data, loading, error };
 }
 
-export default usePolling;
+export default useTradePolling;

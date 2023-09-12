@@ -1,9 +1,10 @@
-import usePolling from '../hooks/usepolling'
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import useTradePolling from '../hooks/usetradepolling'
 import { useNavigate } from 'react-router-dom';
 
 
 function TradeTable() {
-    const { data } = usePolling();
+    const { data } = useTradePolling();
 
     const navigate = useNavigate();
 
@@ -23,29 +24,47 @@ function TradeTable() {
                         <th className="text-left py-2 px-3">Block</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {data.length > 0 ? data.map(item => (
-                        <tr key={item.hash} className="border-b hover:bg-gray-100">
-                            <td className="py-2 px-3 cursor-pointer" onClick={()=> navigate(`/user/${item.trader.twitter_username}`)}>
-                                <div className="flex items-center">
-                                    <img src={item.trader.twitter_profile_pic} alt={item.trader.twitter_username} className="w-8 h-8 rounded-full mr-3"/>
-                                    @{item.trader.twitter_username}
-                                </div>
-                            </td>
-                            <td className="py-2 px-3 cursor-pointer" onClick={()=> navigate(`/user/${item.subject.twitter_username}`)}>
-                                <div className="flex items-center">
-                                    <img src={item.subject.twitter_profile_pic} alt={item.subject.twitter_username} className="w-8 h-8 rounded-full mr-3"/>
-                                    @{item.subject.twitter_username}
-                                </div>
-                            </td>
-                            <td className={`py-2 px-3 ${item.is_buy ? 'text-green-500' : 'text-red-500'}`}>
-                                {item.is_buy ? 'Bought' : 'Sold'}
-                            </td>
-                            <td className="py-2 px-3">Ξ{parseFloat(item.price).toFixed(2)}</td>
-                            <td className="py-2 px-3">{item.block}</td>
-                        </tr>
-                    )) : <tr><td colSpan="5" className="text-center py-2 px-3 text-gray-500">No trades available.</td></tr>}
-                </tbody>
+                <TransitionGroup component="tbody">
+                        {data.length > 0 ? (
+                            data.map(item => (
+                                <CSSTransition
+                                    key={item.hash}
+                                    timeout={500}
+                                    classNames="fade"
+                                    onEnter={(node) => {
+                                        node.style.opacity = "0";
+                                        node.style.transitionProperty = "opacity, transform";
+                                        node.style.transitionDuration = "2000ms"; // Updated duration
+                                        node.style.transitionTimingFunction = "cubic-bezier(0.4, 0, 0.2, 1)";
+                                    }}
+                                    onEntering={(node) => {
+                                        node.style.opacity = "1";
+                                        node.style.transform = "scale(1) translateY(0)";
+                                    }}
+                                >
+                                    <tr className="border-b hover:bg-gray-100">
+                                        <td className="py-2 px-3 cursor-pointer" onClick={()=> navigate(`/user/${item.trader.twitter_username}`)}>
+                                            <div className="flex items-center">
+                                                <img src={item.trader.twitter_profile_pic} alt={item.trader.twitter_username} className="w-8 h-8 rounded-full mr-3"/>
+                                                @{item.trader.twitter_username}
+                                            </div>
+                                        </td>
+                                        <td className="py-2 px-3 cursor-pointer" onClick={()=> navigate(`/user/${item.subject.twitter_username}`)}>
+                                            <div className="flex items-center">
+                                                <img src={item.subject.twitter_profile_pic} alt={item.subject.twitter_username} className="w-8 h-8 rounded-full mr-3"/>
+                                                @{item.subject.twitter_username}
+                                            </div>
+                                        </td>
+                                        <td className={`py-2 px-3 ${item.is_buy ? 'text-green-500' : 'text-red-500'}`}>
+                                            {item.is_buy ? 'Bought' : 'Sold'}
+                                        </td>
+                                        <td className="py-2 px-3">Ξ{parseFloat(item.price).toFixed(2)}</td>
+                                        <td className="py-2 px-3">{item.block}</td>
+                                    </tr>
+                                </CSSTransition>
+                            ))
+                        ) : null}
+                    </TransitionGroup>
             </table>
             </div>
         </div>
