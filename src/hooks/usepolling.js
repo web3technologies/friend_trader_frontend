@@ -16,9 +16,7 @@ function usePolling( interval = 10000) {
     async function getData(){
         try {
             const userDataRes = await axios.get(url);
-            let currData = [...data]
-            let newData = userDataRes.data 
-            setData(newData.concat(currData));
+            setData(prevTrades => [...userDataRes.data, ...prevTrades]);
             setLoading(false);
         } catch (e) {
             console.log(e);

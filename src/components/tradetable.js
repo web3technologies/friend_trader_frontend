@@ -1,7 +1,11 @@
 import usePolling from '../hooks/usepolling'
+import { useNavigate } from 'react-router-dom';
+
 
 function TradeTable() {
     const { data } = usePolling();
+
+    const navigate = useNavigate();
 
     return (
         <div className="bg-white shadow-md rounded-lg overflow-hidden w-full lg:w-2/3 xl:w-1/2">
@@ -22,13 +26,13 @@ function TradeTable() {
                 <tbody>
                     {data.length > 0 ? data.map(item => (
                         <tr key={item.hash} className="border-b hover:bg-gray-100">
-                            <td className="py-2 px-3">
+                            <td className="py-2 px-3 cursor-pointer" onClick={()=> navigate(`/user/${item.trader.twitter_username}`)}>
                                 <div className="flex items-center">
                                     <img src={item.trader.twitter_profile_pic} alt={item.trader.twitter_username} className="w-8 h-8 rounded-full mr-3"/>
                                     @{item.trader.twitter_username}
                                 </div>
                             </td>
-                            <td className="py-2 px-3">
+                            <td className="py-2 px-3 cursor-pointer" onClick={()=> navigate(`/user/${item.subject.twitter_username}`)}>
                                 <div className="flex items-center">
                                     <img src={item.subject.twitter_profile_pic} alt={item.subject.twitter_username} className="w-8 h-8 rounded-full mr-3"/>
                                     @{item.subject.twitter_username}
