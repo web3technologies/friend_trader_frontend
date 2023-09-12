@@ -5,6 +5,10 @@ module.exports = {
   content: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
   theme: {
     extend: {
+      maxHeight: {
+        '400': '400px',
+        '600': '600px',
+      },
       backgroundColor: {
         'dark-primary': '#1E2A38',
         'dark-secondary': '#2A3A4D',
