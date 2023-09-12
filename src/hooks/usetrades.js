@@ -13,7 +13,6 @@ export default function useTradeList(address){
         const url = `http://localhost:8000/friend-trader/trades/${address}/`;
         try {
             const userDataRes = await axios.get(url);
-            console.log(userDataRes.data)
             setTrades(userDataRes.data);
             } catch (e) {
                 console.log(e);

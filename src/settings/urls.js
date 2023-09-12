@@ -8,5 +8,6 @@ export const urls = {
     base: process.env.REACT_APP_BASE_URL,
     friendTechUser: "friend-tech-user",
     friendTechUserList: "friend-tech-user-list",
-    trades: "trades/"
+    trades: "trades/",
+    block: "block"
 }
