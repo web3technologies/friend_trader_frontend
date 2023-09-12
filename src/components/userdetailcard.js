@@ -1,6 +1,10 @@
 
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { FaCopy } from 'react-icons/fa';
+
 
 const UserDetailCard = ({userData})=> {
+
     if (userData){
         return (
             <div className="max-w-md w-full bg-white dark:bg-dark-secondary rounded-lg shadow-md overflow-hidden">
@@ -21,9 +25,14 @@ const UserDetailCard = ({userData})=> {
                             <h1 className="text-2xl text-gray-800 dark:text-light-foreground font-semibold mb-2">{userData.twitter_username}</h1>
                             {
                                 userData.address && (
-                                    <p className="text-gray-500 dark:text-gray-400">
-                                        Address: {`${userData.address.slice(0, 6)}...${userData.address.slice(-4)}`}
-                                    </p>
+                                    <div className="flex items-center">
+                                        <p className="text-gray-500 dark:text-gray-400">
+                                            Address: {`${userData.address.slice(0, 6)}...${userData.address.slice(-4)}`}
+                                        </p>
+                                        <CopyToClipboard text={userData.address}>
+                                            <FaCopy className='cursor-pointer ml-4'/>
+                                        </CopyToClipboard>
+                                    </div>
                                 )
                             }
                             
