@@ -8,6 +8,7 @@ import SearchInput from './searchinput';
 const Header = () => {
   const { theme, toggleTheme, toggleSidebarOpen, user, handleSignIn} = useTheme();
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const iconClass = hoverBg => {
     return `p-2 rounded-full transition-transform transform hover:scale-105 ${theme === 'light' ? 'hover:bg-gradient-to-r hover:from-blue-300 hover:to-pink-400' : 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-500'} ${hoverBg} cursor-pointer`;

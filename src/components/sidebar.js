@@ -27,6 +27,8 @@ const Sidebar = () => {
           <ul className="space-y-4 p-4">
             <li><a href="#dashboard" className={linkClass()} onClick={()=>navigate("")}>Dashboard</a></li>
             <li><a href="#trade" className={linkClass()}>Trade</a></li>
+            <li><a href="#trade" className={linkClass()}>Trades</a></li>
+            <li><a href="#trade" className={linkClass()}>Blocks</a></li>
           </ul>
         </div>
       )}
