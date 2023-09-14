@@ -1,12 +1,37 @@
+import { useState, useEffect } from 'react';
 import Web3Modal from 'web3modal';
 import { BrowserProvider } from "ethers";
 import axios from 'axios';
-import { useState } from 'react';
+import api from '../settings/api';
 
 
 const useWeb3Auth = () => {
 
   const [ user, setUser ] = useState()
+
+  useEffect(() => {
+      
+      async function getUserData(){
+
+          try {
+              const accessToken = localStorage.getItem('friendTraderAccess')
+              if(accessToken){
+                  const url = `/auth/user/`
+                  const request = await api.get(url)
+                  setUser(request.data)
+              }
+
+          } catch (e){
+              setUser(null)
+          }
+
+      }
+
+      getUserData()
+
+      return () => {
+    }
+}, [])
 
   const handleSignIn = async () => {
     const web3Modal = new Web3Modal();
@@ -28,6 +53,8 @@ const useWeb3Auth = () => {
           public_address: address,
         })
         setUser(authRes.data.user)
+        localStorage.setItem("friendTraderAccess", authRes.data.access)
+        console.log(authRes.data.user)
     } catch (e){
         console.log(e.response)
     }
