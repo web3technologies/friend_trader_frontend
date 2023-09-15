@@ -10,22 +10,28 @@ import BlockDetail from './pages/BlockDetail';
 import Block from './pages/Block';
 import Trade from './pages/Trade';
 
+import { useTheme } from './context/ThemeContext';
+import RequireAuth from './pages/RequireAuth';
+
 function App() {
+
+    const { user, handleSignIn } = useTheme()
 
     return (
         <>
-            <BrowserRouter>
-                <Header/>
-                <Sidebar/>
-                <Routes>
-                    <Route path={""} element={<DashBoard/>}/>
-                    <Route path={"/user/:twitterUsername"} element={<FriendTechUserDetail/>}/>
-                    <Route path={"/block/:blockNumber"} element={<BlockDetail/>}/>
-                    <Route path={"/blocks"} element={<Block/>}/>
-                    <Route path={"/trades"} element={<Trade/>}/>
-                </Routes>
-                
-            </BrowserRouter>
+            <RequireAuth user={user} handleSignIn={handleSignIn}>
+                <BrowserRouter>
+                    <Header/>
+                    <Sidebar/>
+                    <Routes>
+                        <Route path={""} element={<DashBoard/>}/>
+                        <Route path={"/user/:twitterUsername"} element={<FriendTechUserDetail/>}/>
+                        <Route path={"/block/:blockNumber"} element={<BlockDetail/>}/>
+                        <Route path={"/blocks"} element={<Block/>}/>
+                        <Route path={"/trades"} element={<Trade/>}/>
+                    </Routes>
+                </BrowserRouter>
+            </RequireAuth>
         </>
     )
 }
