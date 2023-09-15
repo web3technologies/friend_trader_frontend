@@ -7,7 +7,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const linkClass = () => {
-    return `block px-4 py-2 rounded-lg transition-transform transform hover:scale-105 ${theme === 'light' ? 'hover:bg-gradient-to-r hover:from-blue-300 hover:to-pink-400 text-gray-800' : 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-500 text-white'} hover:text-white`;
+    return `block px-4 py-2 cursor-pointer rounded-lg transition-transform transform hover:scale-105 ${theme === 'light' ? 'hover:bg-gradient-to-r hover:from-blue-300 hover:to-pink-400 text-gray-800' : 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-500 text-white'} hover:text-white`;
   };
 
   return (
@@ -25,10 +25,10 @@ const Sidebar = () => {
 
           {/* Navigation Links */}
           <ul className="space-y-4 p-4">
-            <li><a href="#dashboard" className={linkClass()} onClick={()=>navigate("")}>Dashboard</a></li>
-            <li><a href="#trade" className={linkClass()}>Trade</a></li>
-            <li><a href="#trade" className={linkClass()}>Trades</a></li>
-            <li><a href="#trade" className={linkClass()}>Blocks</a></li>
+            <li><a className={linkClass()} onClick={()=>navigate("")}>Dashboard</a></li>
+            <li><a className={linkClass()} onClick={()=>navigate("")}>Trade</a></li>
+            <li><a className={linkClass()} onClick={()=>navigate("trades")}>Trades</a></li>
+            <li><a className={linkClass()} onClick={()=>navigate("blocks")}>Blocks</a></li>
           </ul>
         </div>
       )}
