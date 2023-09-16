@@ -8,6 +8,8 @@ function TradeTable() {
 
     const navigate = useNavigate();
 
+    console.log(data)
+
     return (
         <div className="bg-white shadow-md rounded-lg overflow-hidden w-full lg:w-2/3 xl:w-1/2">
             <div className="bg-gray-800 text-white p-4">
@@ -22,6 +24,7 @@ function TradeTable() {
                         <th className="text-left py-2 px-3">Action</th>
                         <th className="text-left py-2 px-3">Price</th>
                         <th className="text-left py-2 px-3">Block</th>
+                        <th className="text-left py-2 px-3">Time</th>
                     </tr>
                 </thead>
                 <TransitionGroup component="tbody">
@@ -60,6 +63,7 @@ function TradeTable() {
                                         </td>
                                         <td className="py-2 px-3">Ξ{parseFloat(item.price).toFixed(2)}</td>
                                         <td className="py-2 px-3">{item.block}</td>
+                                        <td className="py-2 px-3">{item.block.block_timestamp}</td>
                                     </tr>
                                 </CSSTransition>
                             ))

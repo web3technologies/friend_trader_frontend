@@ -40,22 +40,35 @@ function FriendTechUserDetail(){
     return (
         <div className={`flex items-start justify-between h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
             <div className="flex-1 flex flex-col space-y-6 pr-6">
-                <div className={`${theme === 'light' ? 'bg-white' : 'bg-dark-secondary'} p-4 rounded shadow overflow-hidden relative`}>
-                        {/* Time Interval Select Menu */}
-                        <div className="flex justify-end space-x-4 mb-4">
-                            <button className={buttonClass("300")} onClick={() => setCandleStickInterval("300")}>5 minutes</button>
-                            <button className={buttonClass("3600")} onClick={() => setCandleStickInterval("3600")}>1 hour</button>
-                            <button className={buttonClass("14400")} onClick={() => setCandleStickInterval("14400")}>4 hours</button>
-                            <button className={buttonClass("86400")} onClick={() => setCandleStickInterval("86400")}>1 day</button>
-                        </div>
-                        <div ref={chartContainerRef}>
-                            {/* Chart will be rendered here */}
-                        </div>
-                    </div>
-                    <div ref={rsiContainerRef} className={`${theme === 'light' ? 'bg-white' : 'bg-dark-secondary'} p-4 rounded shadow h-1/5 overflow-hidden`}>
-                        {/* RSI will be rendered here */}
+            <div className={`${theme === 'light' ? 'bg-white' : 'bg-dark-secondary'} p-4 rounded shadow overflow-hidden relative`}>
+                {/* Time Interval Select Menu */}
+                <div className="flex justify-end space-x-4 mb-4">
+                    <button className={`${buttonClass("300")} transition duration-300 ease-in-out transform hover:scale-105`} onClick={() => setCandleStickInterval("300")}>5 minutes</button>
+                    <button className={`${buttonClass("3600")} transition duration-300 ease-in-out transform hover:scale-105`} onClick={() => setCandleStickInterval("3600")}>1 hour</button>
+                    <button className={`${buttonClass("14400")} transition duration-300 ease-in-out transform hover:scale-105`} onClick={() => setCandleStickInterval("14400")}>4 hours</button>
+                    <button className={`${buttonClass("86400")} transition duration-300 ease-in-out transform hover:scale-105`} onClick={() => setCandleStickInterval("86400")}>1 day</button>
+                </div>
+                <div ref={chartContainerRef}>
+                    {/* Chart will be rendered here */}
+                </div>
+            </div>
+
+            <div ref={rsiContainerRef} className={`${theme === 'light' ? 'bg-gradient-to-r from-white to-gray-100' : 'bg-gradient-to-r from-dark-secondary to-gray-900'} p-4 rounded shadow h-1/5 overflow-hidden relative`}>
+                {/* RSI Title with Tooltip */}
+                <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-medium">RSI Indicator</h3>
+                    <div className="hover:text-primary ml-2 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105">
+                        <i className="fas fa-info-circle" title="The Relative Strength Index (RSI) is a momentum oscillator that measures the speed and change of price movements."></i>
                     </div>
                 </div>
+
+                {/* RSI Chart */}
+                <div className="pt-6">
+                    {/* RSI will be rendered here */}
+                </div>
+            </div>
+
+            </div>
             <div className="space-y-6"> 
                 <UserDetailCard userData={userData}/>
                 <TradeCard/>
