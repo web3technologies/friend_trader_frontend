@@ -38,7 +38,7 @@ const useWeb3Auth = () => {
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new BrowserProvider(connection)
-    const network = await provider.getNetwork()
+    // const network = await provider.getNetwork()
     try {
         const signer = await provider.getSigner()
         const data = {
