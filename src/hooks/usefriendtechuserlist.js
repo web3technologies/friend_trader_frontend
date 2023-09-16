@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import debounce from "lodash/debounce"
 
-import { urls } from "../settings/urls";
+import { urls, baseURL } from "../settings/urls";
 
 
 export default function useFriendTechUserList(){
@@ -11,7 +11,7 @@ export default function useFriendTechUserList(){
 
     const debounedSearch = debounce(async (twitterUsername) => {
 
-        const url = `http://localhost:8000/friend-trader/${urls.friendTechUserList}/?twitterUsername=${twitterUsername}`;
+        const url = `${baseURL}/friend-trader/${urls.friendTechUserList}/?twitterUsername=${twitterUsername}`;
         try {
             const userDataRes = await axios.get(url);
             console.log(userDataRes.data)

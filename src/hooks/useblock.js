@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-import { urls } from "../settings/urls";
+import { urls, baseURL } from "../settings/urls";
 
 
 export default function useBlock(blockNumber){
@@ -10,7 +10,7 @@ export default function useBlock(blockNumber){
 
     const getData = async () => {
 
-        const url = `http://localhost:8000/friend-trader/${urls.block}/${blockNumber}/`;
+        const url = `${baseURL}/friend-trader/${urls.block}/${blockNumber}/`;
         try {
             const blockData = await axios.get(url);
             console.log(blockData.data)

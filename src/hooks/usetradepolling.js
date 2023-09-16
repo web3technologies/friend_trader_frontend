@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
+import { baseURL } from '../settings/urls';
 
-const url = `http://localhost:8000/friend-trader/trade/`;
+const url = `${baseURL}/friend-trader/trade/`;
 
 
 function useTradePolling( interval = 10000) {

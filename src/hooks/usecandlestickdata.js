@@ -3,6 +3,7 @@ import { createChart } from 'lightweight-charts';
 import { RSI } from 'technicalindicators';
 import axios from 'axios';
 
+import { baseURL } from "../settings/urls";
 
 export default function useCandleStickData(twitterUsername){
     const chartContainerRef = useRef(null);
@@ -12,7 +13,7 @@ export default function useCandleStickData(twitterUsername){
 
 
     async function getData(){
-      const url = `http://localhost:8000/friend-trader/friend-tech-user/${twitterUsername}/?interval=${candleStickInterval}`;
+      const url = `${baseURL}/friend-trader/friend-tech-user/${twitterUsername}/?interval=${candleStickInterval}`;
       try {
           const userDataRes = await axios.get(url);
           setUserData(userDataRes.data);

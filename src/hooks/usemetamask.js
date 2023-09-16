@@ -4,6 +4,7 @@ import { BrowserProvider } from "ethers";
 import axios from 'axios';
 import api from '../settings/api';
 
+import { baseURL } from '../settings/urls';
 
 const useWeb3Auth = () => {
 
@@ -43,11 +44,12 @@ const useWeb3Auth = () => {
         const data = {
             public_address: signer.address,
         }
-        const res = await axios.post(`http://localhost:8000/auth/nonce`, data)
+        console.log(baseURL)
+        const res = await axios.post(`${baseURL}/auth/nonce`, data)
         const message = res.data.message
         const address = signer.address
         const signature = await signer.signMessage(message)
-        const authRes = await axios.post("http://localhost:8000/auth/authenticate", {
+        const authRes = await axios.post(`${baseURL}/auth/authenticate`, {
           signature: signature,
           message: message,
           public_address: address,
