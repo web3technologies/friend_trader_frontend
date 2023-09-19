@@ -26,7 +26,7 @@ const Sidebar = () => {
           {/* Navigation Links */}
           <ul className="space-y-4 p-4">
             <li><a className={linkClass()} onClick={()=>navigate("")}>Dashboard</a></li>
-            <li><a className={linkClass()} onClick={()=>navigate("")}>Trade</a></li>
+            <li><a className={linkClass()} onClick={()=>navigate("leaderboard")}>LeaderBoard</a></li>
             <li><a className={linkClass()} onClick={()=>navigate("trades")}>Trades</a></li>
             <li><a className={linkClass()} onClick={()=>navigate("blocks")}>Blocks</a></li>
           </ul>

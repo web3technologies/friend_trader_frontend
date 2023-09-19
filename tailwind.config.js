@@ -21,6 +21,9 @@ module.exports = {
         'light-foreground': '#333',
         'light-accent': '#FF6B6B',
         'light-secondary-accent': '#4ECDC4'
+      },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
       }
     },
     fontFamily: {
