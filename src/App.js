@@ -31,7 +31,7 @@ function App() {
                         <Route path={"/user/:twitterUsername"} element={<FriendTechUserDetail/>}/>
                         <Route path={"/block/:blockNumber"} element={<BlockDetail/>}/>
                         <Route path={"/blocks"} element={<Block/>}/>
-                        <Route path={"/leaderboard"} element={<LeaderBoard/>}/>
+                        {/* <Route path={"/leaderboard"} element={<LeaderBoard/>}/> */}
                         <Route path={"/trades"} element={<Trade/>}/>
                     </Routes>
                 </BrowserRouter>
