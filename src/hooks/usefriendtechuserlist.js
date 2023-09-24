@@ -5,6 +5,7 @@ import debounce from "lodash/debounce"
 import { urls, baseURL } from "../settings/urls";
 
 
+// used in the drop down to search users 
 export default function useFriendTechUserList(){
 
     const [ userList, setUserList ] = useState([])

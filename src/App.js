@@ -8,6 +8,7 @@ import FriendTechUserDetail from './pages/FriendTechUserDetail';
 import DashBoard from './pages/DashBoard';
 import BlockDetail from './pages/BlockDetail';
 import Block from './pages/Block';
+import Home from './pages/Home';
 import Trade from './pages/Trade';
 import LeaderBoard from './pages/LeaderBoard';
 
@@ -25,7 +26,8 @@ function App() {
                     <Header/>
                     <Sidebar/>
                     <Routes>
-                        <Route path={""} element={<DashBoard/>}/>
+                        <Route path={""} element={<Home/>}/>
+                        <Route path={"/dashboard"} element={<DashBoard/>}/>
                         <Route path={"/user/:twitterUsername"} element={<FriendTechUserDetail/>}/>
                         <Route path={"/block/:blockNumber"} element={<BlockDetail/>}/>
                         <Route path={"/blocks"} element={<Block/>}/>
