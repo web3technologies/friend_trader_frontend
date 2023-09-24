@@ -1,12 +1,14 @@
 
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 import useFriendTechSubjectList from '../hooks/usefriendtechsubjectlist';
 
 
 function SubjectTable() {
 
+    const navigate = useNavigate();
     const { subjects } = useFriendTechSubjectList()
     const [isFavorited, setIsFavorited] = useState(false);
     const [sortField, setSortField] = useState(null);
@@ -28,8 +30,6 @@ function SubjectTable() {
         }).format(rounded);
       }
 
-    console.log(subjects)
-
     return (
         <div className="mt-5">
             <table className="min-w-full bg-white rounded shadow divide-y divide-gray-200">
@@ -50,7 +50,7 @@ function SubjectTable() {
                                 <FaStar style={{ color: isFavorited ? 'gold' : 'transparent', strokeWidth: '5', stroke: 'black' }}/>
                             </td>
                             <td className="px-6 py-4 text-left">{idx+1}</td>
-                            <td className="px-6 py-4">
+                            <td className="px-6 py-4 cursor-pointer" onClick={()=> navigate(`/user/${subject.twitter_username}`)}>
                                 <div className="flex items-center">
                                     <img src={subject.twitter_profile_pic} alt={`${subject.twitter_username} logo`} className="h-6 w-6 mr-4" />
                                     {subject.twitter_username}
