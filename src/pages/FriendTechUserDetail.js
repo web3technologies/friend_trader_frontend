@@ -38,7 +38,7 @@ function FriendTechUserDetail(){
     };
 
     return (
-        <div className={`flex items-start justify-between h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
+        <div className={`flex items-start justify-between min-h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
             <div className="flex-1 flex flex-col space-y-6 pr-6">
             <div className={`${theme === 'light' ? 'bg-white' : 'bg-dark-secondary'} p-4 rounded shadow overflow-hidden relative`}>
                 {/* Time Interval Select Menu */}

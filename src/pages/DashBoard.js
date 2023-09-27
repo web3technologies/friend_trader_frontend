@@ -9,7 +9,7 @@ function DashBoard() {
   const { theme } = useTheme()
 
   return (
-    <div className={`flex items-start justify-between h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
+    <div className={`flex items-start justify-between min-h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
       <VolumeChart/>
       <TradeTable/>
     </div>
