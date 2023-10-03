@@ -2,9 +2,9 @@ import useBlock from '../hooks/useblock'
 import { useParams } from 'react-router-dom';
 import React, { useState, useContext } from 'react';
 import { FaChevronDown, FaChevronRight, FaArrowDown, FaArrowUp } from 'react-icons/fa';
-import { ThemeContext } from '../context/ThemeContext'; // Assuming you have a similar context
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
+
 
 const BlockDetail = () => {
 

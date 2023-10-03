@@ -44,6 +44,8 @@ function SubjectTable() {
         }).format(rounded);
     }
 
+    console.log(subjects)
+
     return (
         <div className="mt-5">
             <h2 className="text-2xl font-bold mb-4">Top Subjects Overview!</h2>
@@ -84,7 +86,7 @@ function SubjectTable() {
                                     {subject.twitter_username}
                                 </div>
                             </td>
-                            <td className="px-6 py-4 text-left">Ξ {formatNumber(subject.last_trade_time)}</td>
+                            <td className="px-6 py-4 text-left">{new Date(subject.last_trade_time * 1000).toLocaleString()}</td>
                             <td className="px-6 py-4 text-right">Ξ {formatNumber(subject.latest_price.price)}</td>
                             <td className="px-6 py-4 text-right">{formatNumber(subject.shares_supply)}</td>
                             <td className="px-6 py-4 text-right">Ξ {formatNumber(subject.latest_price.price * subject.shares_supply)}</td>
