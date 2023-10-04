@@ -4,7 +4,7 @@ import { FaCopy } from 'react-icons/fa';
 
 
 const UserDetailCard = ({userData})=> {
-
+    console.log(userData)
     if (userData){
         return (
             <div className="max-w-md w-full bg-white dark:bg-dark-secondary rounded-lg shadow-md overflow-hidden">
@@ -46,7 +46,7 @@ const UserDetailCard = ({userData})=> {
     
                     <div>
                         <p className="text-gray-700 dark:text-gray-300 font-medium">
-                            Current price: Ξ{userData.candle_stick_data?.length > 0 ? userData.candle_stick_data[userData.candle_stick_data.length-1].low : null}
+                            Latest price: Ξ{userData.latest_price}
                         </p>
                         <p className="text-gray-500 dark:text-gray-400">
                             Holders: {userData.holder_count ? userData.holder_count.toLocaleString() : 0}
