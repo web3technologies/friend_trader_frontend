@@ -36,19 +36,11 @@ export default function useFriendTechSubjectList(){
 
     const fetchNextPage = async () => {
       
-      // Lock fetching as soon as we start fetching the next page
       isLoadingRef.current = true;
       let newDataRes;
       try {
-          console.log(pageDataRef.current.next)
           newDataRes = await api.get(pageDataRef.current.next);
-          console.log(newDataRes.data);
-          
           setSubjects(prevSubjects => {
-            
-            console.log(prevSubjects)
-            console.log(newDataRes.data.results)
-            
             return [...prevSubjects, ...newDataRes.data.results]
           });
           setPageData({
@@ -59,7 +51,6 @@ export default function useFriendTechSubjectList(){
       } catch (e) {
           console.log(e);
       } finally {
-            // Unlock fetching once done, regardless of success or failure
             isLoadingRef.current = false;
         }
     };
@@ -80,7 +71,7 @@ export default function useFriendTechSubjectList(){
         console.log(pageData)
         const checkScrollPosition = debounce(() => {
           if (!isLoadingRef.current && (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) && pageDataRef.current.next) {
-              isLoadingRef.current = true; // Set the lock
+              isLoadingRef.current = true;
               fetchNextPage();
           }
       }, 100);  // Debounce for 100ms
