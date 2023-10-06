@@ -1,5 +1,41 @@
+import React, { useState } from 'react';
 
-const TradeCard= ()=>{
+
+const ComingSoonModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+    return (
+        <div className="fixed z-50 top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300">
+            <div className="bg-white dark:bg-dark-secondary p-6 rounded-lg shadow-lg transform transition-transform duration-300 scale-95" style={{ maxWidth: '90%' }}>
+                {/* Close Icon */}
+                <div className="absolute top-2 right-2">
+                    <button onClick={onClose} className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Content */}
+                <div className="text-center">
+                    <h3 className="mb-4 text-2xl font-semibold">Coming Soon!</h3>
+                    <p className="mb-4 text-gray-600">We're actively working on this feature. Stay tuned!</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+const TradeCard = () => {
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    const handleButtonClick = () => {
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     return (
         <div className="max-w-md w-full mt-8 bg-white dark:bg-dark-secondary rounded-lg shadow-md overflow-hidden">
@@ -16,7 +52,7 @@ const TradeCard= ()=>{
 
                     {/* Buy Button */}
                     <button 
-                        onClick={() => {} /* Handle Buy Action */}
+                        onClick={handleButtonClick}
                         className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-md shadow hover:shadow-lg transition-all"
                     >
                         Buy
@@ -24,13 +60,15 @@ const TradeCard= ()=>{
 
                     {/* Sell Button */}
                     <button 
-                        onClick={() => {} /* Handle Sell Action */}
+                        onClick={handleButtonClick}
                         className="px-4 py-2 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-md shadow hover:shadow-lg transition-all"
                     >
                         Sell
                     </button>
                 </div>
             </div>
+
+            <ComingSoonModal isOpen={isModalOpen} onClose={closeModal} />
         </div>
     )
 }

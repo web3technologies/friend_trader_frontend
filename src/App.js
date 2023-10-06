@@ -7,13 +7,11 @@ import Sidebar from './components/sidebar';
 import FriendTechUserDetail from './pages/FriendTechUserDetail';
 import DashBoard from './pages/DashBoard';
 import BlockDetail from './pages/BlockDetail';
-import Block from './pages/Block';
 import Home from './pages/Home';
-import Trade from './pages/Trade';
-import LeaderBoard from './pages/LeaderBoard';
 
 import { useTheme } from './context/ThemeContext';
 import RequireAuth from './pages/RequireAuth';
+
 
 function App() {
 
@@ -28,11 +26,9 @@ function App() {
                     <Routes>
                         <Route path={""} element={<Home/>}/>
                         <Route path={"/dashboard"} element={<DashBoard/>}/>
+                        <Route path={"/watchlist"} element={<DashBoard/>}/>
                         <Route path={"/user/:twitterUsername"} element={<FriendTechUserDetail/>}/>
                         <Route path={"/block/:blockNumber"} element={<BlockDetail/>}/>
-                        <Route path={"/blocks"} element={<Block/>}/>
-                        {/* <Route path={"/leaderboard"} element={<LeaderBoard/>}/> */}
-                        <Route path={"/trades"} element={<Trade/>}/>
                     </Routes>
                 </BrowserRouter>
             </RequireAuth>

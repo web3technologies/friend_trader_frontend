@@ -3,7 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
-  const { theme, isSidebarOpen, toggleSidebarOpen } = useTheme();
+  const { theme, isSidebarOpen, toggleSidebarOpen, user } = useTheme();
   const navigate = useNavigate();
 
   const linkClass = () => {
@@ -27,9 +27,7 @@ const Sidebar = () => {
           <ul className="space-y-4 p-4">
             <li><a className={linkClass()} onClick={()=>navigate("")}>Home</a></li>
             <li><a className={linkClass()} onClick={()=>navigate("dashboard")}>Dashboard</a></li>
-            {/* <li><a className={linkClass()} onClick={()=>navigate("leaderboard")}>LeaderBoard</a></li> */}
-            <li><a className={linkClass()} onClick={()=>navigate("trades")}>Trades</a></li>
-            <li><a className={linkClass()} onClick={()=>navigate("blocks")}>Blocks</a></li>
+            <li><a className={linkClass()} onClick={()=>navigate("watchlist")}>WatchList</a></li>
           </ul>
         </div>
       )}
