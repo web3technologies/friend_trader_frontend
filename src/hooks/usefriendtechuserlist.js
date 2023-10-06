@@ -1,8 +1,8 @@
 import { useState } from "react";
-import axios from 'axios';
-import debounce from "lodash/debounce"
 
-import { urls, baseURL } from "../settings/urls";
+import debounce from "lodash/debounce"
+import api from "../settings/api";
+import { urls } from "../settings/urls";
 
 
 // used in the drop down to search users 
@@ -12,9 +12,9 @@ export default function useFriendTechUserList(){
 
     const debounedSearch = debounce(async (twitterUsername) => {
 
-        const url = `${baseURL}/friend-trader/${urls.friendTechUserList}/?twitterUsername=${twitterUsername}`;
+        const url = `/friend-trader/${urls.friendTechUserList}/?twitterUsername=${twitterUsername}`;
         try {
-            const userDataRes = await axios.get(url);
+            const userDataRes = await api.get(url);
             console.log(userDataRes.data)
             setUserList(userDataRes.data);
             } catch (e) {

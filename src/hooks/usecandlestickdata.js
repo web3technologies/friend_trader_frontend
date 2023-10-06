@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { createChart } from 'lightweight-charts';
 import { RSI } from 'technicalindicators';
-import axios from 'axios';
-
-import { baseURL } from "../settings/urls";
+import api from "../settings/api";
 
 export default function useCandleStickData(twitterUsername){
     const chartContainerRef = useRef(null);
@@ -13,9 +11,9 @@ export default function useCandleStickData(twitterUsername){
 
 
     async function getData(){
-      const url = `${baseURL}/friend-trader/friend-tech-user/${twitterUsername}/?interval=${candleStickInterval}`;
+      const url = `/friend-trader/friend-tech-user/${twitterUsername}/?interval=${candleStickInterval}`;
       try {
-          const userDataRes = await axios.get(url);
+          const userDataRes = await api.get(url);
           setUserData(userDataRes.data);
         } catch (e) {
             console.log(e);

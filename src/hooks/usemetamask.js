@@ -45,7 +45,6 @@ const useWeb3Auth = () => {
         const data = {
             public_address: signer.address,
         }
-        console.log(baseURL)
         const res = await axios.post(`${baseURL}/auth/nonce`, data)
         const message = res.data.message
         const address = signer.address
@@ -57,15 +56,20 @@ const useWeb3Auth = () => {
         })
         setUser(authRes.data.user)
         localStorage.setItem("friendTraderAccess", authRes.data.access)
-        console.log(authRes.data.user)
     } catch (e){
+        localStorage.removeItem("friendTraderAccess")
         console.log(e.response)
     }
 
   };
 
+  const handleSignOut = ()=>{
+    localStorage.removeItem("friendTraderAccess")
+    setUser(null)
+  }
 
-  return { handleSignIn, user};
+
+  return { handleSignIn, handleSignOut, user};
 };
 
 export default useWeb3Auth;

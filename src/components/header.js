@@ -1,26 +1,36 @@
 import React, { useState } from 'react';
 import { FaSearch, FaBell, FaUserCircle, FaCog, FaMoon, FaBars, FaSun } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
+import { Transition } from '@headlessui/react';
 
 import SearchInput from './searchinput';
 
 
 const Header = () => {
-  const { theme, toggleTheme, toggleSidebarOpen, user, handleSignIn} = useTheme();
+  const { theme, toggleTheme, toggleSidebarOpen, user, handleSignIn, handleSignOut} = useTheme();
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-  const [isDropdownVisible, setDropdownVisibility] = useState(false);
+  
+    const [isDropdownVisible, setDropdownVisibility] = useState(false);
+    const [isUserDropDownVisible, setIsUserDropDownVisible] = useState(false);
 
-  const toggleDropdown = () => {
-    setDropdownVisibility(!isDropdownVisible);
-}
+    const performSignOut = ()=>{
+        handleSignOut()
+        setDropdownVisibility(false)
+        setIsUserDropDownVisible(false)
+    }
+
+    const toggleDropdown = () => {
+        setDropdownVisibility(!isDropdownVisible);
+    }
 
 
-  const iconClass = hoverBg => {
-    return `p-2 rounded-full transition-transform transform hover:scale-105 ${theme === 'light' ? 'hover:bg-gradient-to-r hover:from-blue-300 hover:to-pink-400' : 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-500'} ${hoverBg} cursor-pointer`;
-  };
+    const iconClass = hoverBg => {
+        return `p-2 rounded-full transition-transform transform hover:scale-105 ${theme === 'light' ? 'hover:bg-gradient-to-r hover:from-blue-300 hover:to-pink-400' : 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-500'} ${hoverBg} cursor-pointer`;
+    };
 
     const stickyHeaderStyle = 'sticky top-0 z-50';
     const biggerIconStyle = 'text-2xl';
+    
 
     const notifications = [
         {
@@ -48,9 +58,34 @@ const Header = () => {
                         user ?
                         <>
                             <span className={`${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>{`${user.public_address.slice(0, 6)}...${user.public_address.slice(-4)}`}</span>
-                            <div className={iconClass('')}>
-                                <FaUserCircle className={`${theme === 'light' ? 'text-gray-800' : 'text-white'} ${biggerIconStyle}`}/>
+                            <div onClick={() => setIsUserDropDownVisible(!isUserDropDownVisible)} className={iconClass('')}>
+                                <FaUserCircle className={`${theme === 'light' ? 'text-gray-800' : 'text-white'} ${biggerIconStyle}`} />
                             </div>
+
+                            <Transition
+                                show={isUserDropDownVisible}
+                                enter="transition ease-out duration-200 transform"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="transition ease-in duration-150 transform"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                            >
+                                {(ref) => (
+                                    <div 
+                                        ref={ref} 
+                                        className="origin-top-right absolute right-0 mt-4 w-56 rounded-md shadow-2xl bg-white border border-gray-200 focus:outline-none z-10">
+                                        <div className="py-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                            <button 
+                                                onClick={performSignOut} 
+                                                className="w-full text-center text-left block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white rounded" 
+                                                role="menuitem">
+                                                Sign out
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </Transition>
                             <div onClick={toggleDropdown} className={iconClass('relative')}>
                                 <FaBell className={`${theme === 'light' ? 'text-gray-800' : 'text-white'} ${biggerIconStyle}`}/>
                                 {
@@ -71,9 +106,6 @@ const Header = () => {
                                     }
                                 </div>
                                 }
-                            </div>
-                            <div className={iconClass('')}>
-                                <FaCog className={`${theme === 'light' ? 'text-gray-800' : 'text-white'} ${biggerIconStyle}`}/>
                             </div>
                         </>
                         :

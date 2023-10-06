@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import api from "../settings/api";
 
-import { baseURL } from "../settings/urls";
+
 
 export default function useTradeList(address){
 
@@ -9,9 +9,9 @@ export default function useTradeList(address){
 
     const getTrades = async () => {
 
-        const url = `${baseURL}/friend-trader/trades/${address}/`;
+        const url = `/friend-trader/trades/${address}/`;
         try {
-            const userDataRes = await axios.get(url);
+            const userDataRes = await api.get(url);
             setTrades(userDataRes.data);
             } catch (e) {
                 console.log(e);

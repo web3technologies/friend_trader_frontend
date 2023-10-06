@@ -21,7 +21,6 @@ export default function useFriendTechSubjectList(){
         const url = `friend-trader/friend-tech-user/`;
         try {
             const userDataRes = await api.get(url);
-            console.log(userDataRes)
             setSubjects(userDataRes.data.results);
             let nextPageData = {
               next: userDataRes.data.next,
@@ -72,7 +71,6 @@ export default function useFriendTechSubjectList(){
     }, [pageData]);
 
     useEffect(() => {
-        console.log(pageData)
         const checkScrollPosition = debounce(() => {
           if (!isLoadingRef.current && (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) && pageDataRef.current.next) {
               isLoadingRef.current = true;

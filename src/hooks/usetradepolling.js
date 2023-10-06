@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import api from '../settings/api';
 
-import { baseURL } from '../settings/urls';
-
-const url = `${baseURL}/friend-trader/trade/`;
+const url = `/friend-trader/trade/`;
 
 
 function useTradePolling( interval = 10000) {
@@ -16,7 +14,7 @@ function useTradePolling( interval = 10000) {
 
     async function getData(){
         try {
-            const userDataRes = await axios.get(url);
+            const userDataRes = await api.get(url);
             setData(prevTrades => {
                 let tradesToAdd = []
                 for (let i = 0; i < userDataRes.data.length; i++){

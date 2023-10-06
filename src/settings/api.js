@@ -14,12 +14,32 @@ const api = axios.create({
 api.interceptors.request.use(
     config => {
         const accessToken = localStorage.getItem('friendTraderAccess')
-        config.headers["Authorization"] = `Bearer ${accessToken}`
+        if (accessToken){
+          config.headers["Authorization"] = `Bearer ${accessToken}`
+        }
         return config;
     },
     error => {
       Promise.reject(error);
     }
   );
+
+  api.interceptors.response.use(
+    response => {
+        return response;
+    },
+    async error => {
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem('friendTraderAccess');
+            if (!error.config._retry) {
+                delete error.config.headers["Authorization"];
+                error.config._retry = true;
+                return api(error.config);
+            }
+        }
+        return Promise.reject(error);
+    }
+);
+
 
 export default api
