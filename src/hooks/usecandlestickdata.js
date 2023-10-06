@@ -3,6 +3,7 @@ import { createChart } from 'lightweight-charts';
 import { RSI } from 'technicalindicators';
 import api from "../settings/api";
 
+
 export default function useCandleStickData(twitterUsername){
     const chartContainerRef = useRef(null);
     const rsiContainerRef = useRef(null);
@@ -118,7 +119,6 @@ export default function useCandleStickData(twitterUsername){
             });
             oversoldSeries.setData(generateLevelData(30));
             
-            
         }
 
         return () => {
@@ -127,13 +127,24 @@ export default function useCandleStickData(twitterUsername){
         }
     }, [userData.candle_stick_data]);
 
+    
+    const watchFriendTechUser = async (friendTechUserId) =>{
+        try{
+            const watchRes = await api.post(`/friend-trader/watchlist/`, {friend_tech_user: friendTechUserId})
+            return watchRes.data
+          } catch (e){
+              console.log(e)
+          }
+      }
+
 
     return {
         chartContainerRef,
         rsiContainerRef,
         userData,
         setCandleStickInterval,
-        candleStickInterval
+        candleStickInterval,
+        watchFriendTechUser
     }
 
 }

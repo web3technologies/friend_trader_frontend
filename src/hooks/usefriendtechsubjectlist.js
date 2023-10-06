@@ -35,6 +35,16 @@ export default function useFriendTechSubjectList(){
         }
     }
 
+    const watchFriendTechUser = async (friendTechUserId) =>{
+      try{
+          const watchRes = await api.post(`/friend-trader/watchlist/`, {friend_tech_user: friendTechUserId})
+          return watchRes.data
+        } catch (e){
+            console.log(e)
+        }
+    }
+
+
     const fetchNextPage = async () => {
       
       isLoadingRef.current = true;
@@ -87,5 +97,5 @@ export default function useFriendTechSubjectList(){
 
     
 
-    return { subjects, isLoadingRef }
+    return { subjects, isLoadingRef, watchFriendTechUser }
 }

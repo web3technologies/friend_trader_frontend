@@ -16,7 +16,8 @@ function FriendTechUserDetail(){
         rsiContainerRef,
         userData,
         candleStickInterval,
-        setCandleStickInterval
+        setCandleStickInterval,
+        watchFriendTechUser
     } = useCandleStickData(twitterUsername)
 
     const buttonClass = (interval) => {
@@ -38,8 +39,12 @@ function FriendTechUserDetail(){
     };
 
     return (
-        <div className={`flex items-start justify-between min-h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
-            <div className="flex-1 flex flex-col space-y-6 pr-6">
+        <div className={`flex flex-col md:flex-row items-start justify-between min-h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
+
+        {/* Mobile: UserDetailCard */}
+        <UserDetailCard userData={userData} extraStyles={`sm: mb-4 md:block lg:hidden xl:hidden`} watchFriendTechUser={watchFriendTechUser}/>
+
+        <div className="flex-1 flex flex-col space-y-6 pr-6 ">
             <div className={`${theme === 'light' ? 'bg-white' : 'bg-dark-secondary'} p-4 rounded shadow overflow-hidden relative`}>
                 {/* Time Interval Select Menu */}
                 <div className="flex justify-end space-x-4 mb-4">
@@ -54,28 +59,20 @@ function FriendTechUserDetail(){
             </div>
 
             <div ref={rsiContainerRef} className={`${theme === 'light' ? 'bg-gradient-to-r from-white to-gray-100' : 'bg-gradient-to-r from-dark-secondary to-gray-900'} p-4 rounded shadow h-1/5 overflow-hidden relative`}>
-                {/* RSI Title with Tooltip */}
-                <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium">RSI Indicator</h3>
-                    <div className="hover:text-primary ml-2 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105">
-                        <i className="fas fa-info-circle" title="The Relative Strength Index (RSI) is a momentum oscillator that measures the speed and change of price movements."></i>
-                    </div>
-                </div>
-
-                {/* RSI Chart */}
-                <div className="pt-6">
-                    {/* RSI will be rendered here */}
-                </div>
+                {/* ... RSI content ... */}
             </div>
-
-            </div>
-            <div className="space-y-6"> 
-                <UserDetailCard userData={userData}/>
-                <TradeCard/>
-                <TradeList address={userData.address}/>
-            </div>
-            
         </div>
+
+        <div className="space-y-6 md:pl-6"> 
+            {/* Desktop: UserDetailCard */}
+            <UserDetailCard userData={userData} extraStyles={`hidden md:block`} watchFriendTechUser={watchFriendTechUser}/>
+
+            <TradeCard/>
+
+            <TradeList address={userData.address}/>
+        </div>
+        </div>
+
     )
 }
 
