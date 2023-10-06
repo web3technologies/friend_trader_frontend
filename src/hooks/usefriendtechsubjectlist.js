@@ -7,6 +7,7 @@ import api from '../settings/api';
 export default function useFriendTechSubjectList(){
 
     const [ subjects, setSubjects ] = useState([])
+    const [update, setUpdate] = useState(0); 
     const [ pageData, setPageData ] = useState({
       next: null,
       previous: null,
@@ -29,6 +30,7 @@ export default function useFriendTechSubjectList(){
             }
             setPageData(nextPageData)
             isLoadingRef.current = false;
+            setUpdate(prev => prev + 1);
             } catch (e) {
                 console.log(e);
         }
@@ -37,6 +39,7 @@ export default function useFriendTechSubjectList(){
     const fetchNextPage = async () => {
       
       isLoadingRef.current = true;
+      setUpdate(prev => prev + 1);  
       let newDataRes;
       try {
           newDataRes = await api.get(pageDataRef.current.next);
@@ -52,6 +55,7 @@ export default function useFriendTechSubjectList(){
           console.log(e);
       } finally {
             isLoadingRef.current = false;
+            setUpdate(prev => prev + 1); 
         }
     };
 
@@ -85,5 +89,5 @@ export default function useFriendTechSubjectList(){
 
     
 
-    return { subjects }
+    return { subjects, isLoadingRef }
 }

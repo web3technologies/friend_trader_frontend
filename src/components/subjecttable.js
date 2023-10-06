@@ -7,10 +7,19 @@ import { useTheme } from '../context/ThemeContext';
 import useFriendTechSubjectList from '../hooks/usefriendtechsubjectlist';
 
 
+const Elipsis = () => (
+    <div className="fixed bottom-0 left-0 w-full h-16 bg-opacity-50 bg-gray-700 flex justify-center items-center space-x-2">
+        <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+        <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+        <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+    </div>
+);
+
+
 function SubjectTable() {
     const { theme } = useTheme();
     const navigate = useNavigate();
-    const { subjects } = useFriendTechSubjectList();
+    const { subjects, isLoadingRef } = useFriendTechSubjectList();
     const [isFavorited, setIsFavorited] = useState(false);
     const [sortField, setSortField] = useState(null);
     const [sortOrder, setSortOrder] = useState(true); // true for ascending, false for descending
@@ -148,6 +157,7 @@ function SubjectTable() {
                     )) : null}
                 </tbody>
             </table>
+            {isLoadingRef.current && <Elipsis />}
         </div>
     );
 }
