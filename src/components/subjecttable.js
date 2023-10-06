@@ -64,16 +64,16 @@ function SubjectTable() {
                 <thead className={`bg-gradient-to-r ${theme === 'light' ? 'from-white to-gray-100' : 'from-gray-900 to-black'}`}>
                     <tr>
                         <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"></th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" onClick={() => handleSort('name')}>
+                        <th className="px-2 py-2 sm:px-6 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" onClick={() => handleSort('name')}>
                             # <FaSort />
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" onClick={() => handleSort('name')}>
+                        <th className="px-2 py-2 sm:px-6 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" onClick={() => handleSort('name')}>
                             Name {sortField === 'name' && (sortOrder ? <FaChevronUp /> : <FaChevronDown />)}
                         </th>
                         <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" onClick={() => handleSort('last_trade_time')}>
                             Last Trade {sortField === 'last_trade_time' && (sortOrder ? <FaChevronUp /> : <FaChevronDown />)}
                         </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" onClick={() => handleSort('price')}>
+                        <th className="px-2 py-2 sm:px-6 sm:py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" onClick={() => handleSort('price')}>
                             Price {sortField === 'price' && (sortOrder ? <FaChevronUp /> : <FaChevronDown />)}
                         </th>
                         <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" onClick={() => handleSort('price')}>
@@ -96,15 +96,15 @@ function SubjectTable() {
                             <td className="hidden md:table-cell px-6 py-4 text-left cursor-pointer" onClick={()=> toggleFavorite(subject.id)}>
                                 <FaStar style={{ color: isFavorited ? 'gold' : 'transparent', strokeWidth: '5', stroke: 'black' }} />
                             </td>
-                            <td className=" px-6 py-4 text-left">{idx + 1}</td>
-                            <td className="px-6 py-4 cursor-pointer" onClick={() => navigate(`/user/${subject.twitter_username}`)}>
+                            <td className="px-2 py-2 sm:px-6 sm:py-4 text-left">{idx + 1}</td>
+                            <td className="px-2 py-2 sm:px-6 sm:py-4 cursor-pointer" onClick={() => navigate(`/user/${subject.twitter_username}`)}>
                                 <div className="flex items-center">
                                     <img src={subject.twitter_profile_pic} alt={`${subject.twitter_username} logo`} className="h-6 w-6 mr-4" />
                                     {subject.twitter_username}
                                 </div>
                             </td>
                             <td className="hidden md:table-cell px-6 py-4 text-left">{new Date(subject.last_trade_time * 1000).toLocaleString()}</td>
-                            <td className="px-6 py-4 text-right">Ξ {formatNumber(subject.latest_price.price)}</td>
+                            <td className="px-2 py-2 sm:px-6 sm:py-4 text-right">Ξ {formatNumber(subject.latest_price.price)}</td>
                             <td className="hidden md:table-cell px-6 py-4 text-right">
                                 <div className="flex items-center">
                                     {subject.twenty_four_hour_percent_change > 0 ? 

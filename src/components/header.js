@@ -8,7 +8,6 @@ import SearchInput from './searchinput';
 
 const Header = () => {
   const { theme, toggleTheme, toggleSidebarOpen, user, handleSignIn, handleSignOut} = useTheme();
-  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   
     const [isDropdownVisible, setDropdownVisibility] = useState(false);
     const [isUserDropDownVisible, setIsUserDropDownVisible] = useState(false);
@@ -122,19 +121,6 @@ const Header = () => {
                     {theme === 'light' ? <FaMoon className={`text-dark-primary p-2 rounded-full bg-black ${biggerIconStyle}`} /> : <FaSun className={`text-dark-primary p-2 rounded-full bg-yellow-500 ${biggerIconStyle}`} />}
                 </div>
             </div>
-
-            {/* Mobile Search Icon */}
-            <div className="md:hidden">
-                <FaSearch className={`${iconClass('')} ${biggerIconStyle}`} onClick={() => setIsSearchModalOpen(true)} />
-            </div>
-
-            {isSearchModalOpen && (
-                <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 ${theme === 'light' ? 'bg-light-background bg-opacity-50' : 'bg-dark-primary bg-opacity-50'}`} onClick={() => setIsSearchModalOpen(false)}>
-                    <div onClick={(e) => e.stopPropagation()} className="p-4 bg-opacity-40 backdrop-blur-md border border-transparent focus:border focus:border-indigo-300 rounded-md shadow-2xl">
-                        <SearchInput isModal={true} />
-                    </div>
-                </div>
-            )}
             </div>
   );
 };

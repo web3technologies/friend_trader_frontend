@@ -2,6 +2,7 @@ import { FaTimes } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 
+
 const Sidebar = () => {
   const { theme, isSidebarOpen, toggleSidebarOpen, user } = useTheme();
   const navigate = useNavigate();
@@ -11,10 +12,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div>
+    <div className={`fixed top-0 left-0 h-full transition-transform transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} w-64 z-50 shadow-2xl bg-gradient-to-r ${theme === 'light' ? 'from-white to-gray-100' : 'from-gray-900 to-black'}`}>
+
       {/* Sidebar */}
       {isSidebarOpen && (
-        <div className={`fixed top-0 left-0 h-full transition-transform transform translate-x-0 w-64 z-50 shadow-2xl bg-gradient-to-r ${theme === 'light' ? 'from-white to-gray-100' : 'from-gray-900 to-black'}`}>
+        <div className={`fixed top-0 left-0 h-full transition-transform ease-out duration-300 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} w-64 z-50 shadow-2xl bg-gradient-to-r ${theme === 'light' ? 'from-white to-gray-100' : 'from-gray-900 to-black'}`}>
           
           {/* Close Button */}
           <div className="p-4 flex justify-end">
