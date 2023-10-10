@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext'
 import VolumeChart from '../components/volume'
 
 
-function DashBoard() {
+function Metrics() {
   const { theme } = useTheme();
 
   return (
@@ -20,4 +20,4 @@ function DashBoard() {
   )
 }
 
-export default DashBoard;
+export default Metrics;

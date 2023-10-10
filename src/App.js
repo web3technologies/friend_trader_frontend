@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
 import Header from './components/header';
 import Footer from './components/footer';
 import Sidebar from './components/sidebar';
 
 import FriendTechUserDetail from './pages/FriendTechUserDetail';
-import DashBoard from './pages/DashBoard';
+import Metrics from './pages/Metrics';
 import BlockDetail from './pages/BlockDetail';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
@@ -22,7 +21,7 @@ function App() {
                 <Sidebar/>
                 <Routes>
                     <Route path={""} element={<Home/>}/>
-                    <Route path={"/dashboard"} element={<DashBoard/>}/>
+                    <Route path={"/metrics"} element={<Metrics/>}/>
                     <Route path={"/watchlist"} element={<WatchList/>}/>
                     <Route path={"/user/:twitterUsername"} element={<FriendTechUserDetail/>}/>
                     <Route path={"/block/:blockNumber"} element={<BlockDetail/>}/>
