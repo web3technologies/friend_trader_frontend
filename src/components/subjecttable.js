@@ -55,9 +55,15 @@ function SubjectTable() {
         }).format(rounded);
     }
 
+    const headerBaseClasses = "text-2xl font-bold p-4 rounded-lg transition-transform duration-200";
+    const headerLightClasses = "text-gray-800 bg-blue-500 hover:bg-blue-600";
+    const headerDarkClasses = "text-white bg-indigo-700 hover:bg-indigo-800";
+
+    const headerClasses = theme === 'light' ? `${headerBaseClasses} ${headerLightClasses}` : `${headerBaseClasses} ${headerDarkClasses}`;
+
     return (
         <div className="mt-5">
-            <h2 className={`text-2xl font-bold mb-4 transform hover:-translate-y-1 hover:shadow-lg transition-transform duration-200 ${theme === 'light' ? 'text-gray-800' : 'text-white'} bg-gradient-to-r ${theme === 'light' ? 'from-blue-400 to-pink-500' : 'from-purple-700 to-indigo-600'}`}>
+            <h2 className={headerClasses}>
                 Top Subjects Overview!
             </h2>
             <table className={`min-w-full rounded shadow divide-y ${theme === 'light' ? 'bg-white' : 'bg-gray-900'}`}>
