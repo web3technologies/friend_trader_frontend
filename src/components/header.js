@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { FaSearch, FaBell, FaUserCircle, FaCog, FaMoon, FaBars, FaSun } from 'react-icons/fa';
+import { FaBell, FaUserCircle, FaMoon, FaBars, FaSun } from 'react-icons/fa';
+import logo from "../images/friend_trader_logo.jpg"
 import { useTheme } from '../context/ThemeContext';
 import { Transition } from '@headlessui/react';
-
+import LoginComponent from './login';
 import SearchInput from './searchinput';
 
 
 const Header = () => {
-  const { theme, toggleTheme, toggleSidebarOpen, user, handleSignIn, handleSignOut} = useTheme();
+    const { theme, toggleTheme, toggleSidebarOpen, user, handleSignIn, handleSignOut} = useTheme();
   
     const [isDropdownVisible, setDropdownVisibility] = useState(false);
     const [isUserDropDownVisible, setIsUserDropDownVisible] = useState(false);
@@ -47,6 +48,12 @@ const Header = () => {
             <div onClick={toggleSidebarOpen} className={iconClass('')}>
                 <FaBars className={`${theme === 'light' ? 'text-gray-800' : 'text-white'} ${biggerIconStyle}`} />
             </div>
+
+            <div className="flex items-center space-x-2 mx-4 md:mx-6">
+                <img src={logo} alt="Your Brand Logo" className="h-10 w-auto" />
+                <p className={`hidden md:block text-lg font-semibold leading-tight text-gray-800 ${theme==='dark'?'text-white':''}`}>Friend Trader</p>
+            </div>
+
 
             {/* Desktop Search Component */}
             <SearchInput isModal={false} className="flex-grow mx-4 md:mx-8 hidden md:block" />
@@ -108,16 +115,12 @@ const Header = () => {
                             </div>
                         </>
                         :
-                        <button className={`flex items-center space-x-2 px-3 py-1 rounded-md ${theme === 'light' ? 'bg-gray-200 text-gray-800' : 'bg-gray-700 text-white'} hover:bg-opacity-90 transition`} onClick={handleSignIn}>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1200px-MetaMask_Fox.svg.png" alt="Metamask" className="w-6 h-6" />
-                            <span>Login</span>
-                        </button>
-                        
+                            <LoginComponent extraStyles={"hidden md:flex"}/>
                         }
                     
                 </div>
 
-                <div className={`rounded-full p-1 transition-transform transform hover:scale-105 ${theme === 'light' ? 'bg-gradient-to-r from-blue-300 to-pink-400' : 'bg-gradient-to-r from-purple-600 to-indigo-500'} cursor-pointer`} onClick={toggleTheme}>
+                <div className={`rounded-full p-1 transition-transform transform hover:scale-105 ${theme === 'light' ? 'bg-gradient-to-r from-blue-300 to-pink-400' : 'bg-gradient-to-r from-purple-600 to-indigo-500'} cursor-pointer hidden md:flex`} onClick={toggleTheme}>
                     {theme === 'light' ? <FaMoon className={`text-dark-primary p-2 rounded-full bg-black ${biggerIconStyle}`} /> : <FaSun className={`text-dark-primary p-2 rounded-full bg-yellow-500 ${biggerIconStyle}`} />}
                 </div>
             </div>

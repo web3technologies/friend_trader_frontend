@@ -1,6 +1,7 @@
 import { FaTimes } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
+import LoginComponent from './login';
 
 
 const Sidebar = () => {
@@ -30,7 +31,12 @@ const Sidebar = () => {
             <li><a className={linkClass()} onClick={()=>navigate("")}>Home</a></li>
             <li><a className={linkClass()} onClick={()=>navigate("metrics")}>Metrics</a></li>
             <li><a className={linkClass()} onClick={()=>navigate("watchlist")}>WatchList</a></li>
+            
           </ul>
+          <div className={"p-4 md:hidden"}>
+            <LoginComponent extraStyles={"w-full flex justify-center md:hidden"}/>
+          </div>
+          
         </div>
       )}
     </div>
