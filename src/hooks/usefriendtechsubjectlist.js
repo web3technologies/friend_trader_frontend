@@ -23,8 +23,8 @@ export default function useFriendTechSubjectList(){
             const userDataRes = await api.get(url);
             setSubjects(userDataRes.data.results);
             let nextPageData = {
-              next: userDataRes.data.next,
-              previous: userDataRes.data.previous,
+              next: `${url}?page=${userDataRes.data.next}`,
+              previous: `${url}/?page=${userDataRes.data.previous}`,
               count: userDataRes.data.count
             }
             setPageData(nextPageData)
@@ -46,7 +46,7 @@ export default function useFriendTechSubjectList(){
 
 
     const fetchNextPage = async () => {
-      
+      const url = `friend-trader/friend-tech-user/`;
       isLoadingRef.current = true;
       setUpdate(prev => prev + 1);  
       let newDataRes;
@@ -56,9 +56,9 @@ export default function useFriendTechSubjectList(){
             return [...prevSubjects, ...newDataRes.data.results]
           });
           setPageData({
-              next: newDataRes.data.next,
-              previous: newDataRes.data.previous,
-              count: newDataRes.data.count
+            next: `${url}?page=${newDataRes.data.next}`,
+            previous: `${url}/?page=${newDataRes.data.previous}`,
+            count: newDataRes.data.count
           });
       } catch (e) {
           console.log(e);
