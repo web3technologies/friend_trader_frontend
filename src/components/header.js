@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaBell, FaUserCircle, FaMoon, FaBars, FaSun } from 'react-icons/fa';
-import logo from "../images/friend_trader_logo.jpg"
+import Logo from './logo';
 import { useTheme } from '../context/ThemeContext';
 import { Transition } from '@headlessui/react';
 import LoginComponent from './login';
@@ -49,12 +49,9 @@ const Header = () => {
                 <FaBars className={`${theme === 'light' ? 'text-gray-800' : 'text-white'} ${biggerIconStyle}`} />
             </div>
 
-            <div className="flex items-center space-x-2 mx-4 md:mx-6">
-                <img src={logo} alt="Your Brand Logo" className="h-10 w-auto" />
-                <p className={`hidden md:block text-lg font-semibold leading-tight text-gray-800 ${theme==='dark'?'text-white':''}`}>Friend Trader</p>
+            <div className="hidden md:block">
+                <Logo/>
             </div>
-
-
             {/* Desktop Search Component */}
             <SearchInput isModal={false} className="flex-grow mx-4 md:mx-8 hidden md:block" />
 

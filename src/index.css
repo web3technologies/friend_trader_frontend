@@ -687,6 +687,9 @@ video {
 .w-8 {
   width: 2rem;
 }
+.w-auto {
+  width: auto;
+}
 .w-full {
   width: 100%;
 }
@@ -1188,6 +1191,9 @@ video {
 .leading-5 {
   line-height: 1.25rem;
 }
+.leading-tight {
+  line-height: 1.25;
+}
 .tracking-wider {
   letter-spacing: 0.05em;
 }
@@ -1544,6 +1550,11 @@ video {
 }
 @media (min-width: 768px) {
 
+  .md\:mx-6 {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
   .md\:mx-8 {
     margin-left: 2rem;
     margin-right: 2rem;
@@ -1557,8 +1568,16 @@ video {
     display: block;
   }
 
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:table-cell {
     display: table-cell;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:w-2\/3 {
