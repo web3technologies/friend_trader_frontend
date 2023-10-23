@@ -60,8 +60,8 @@ const Header = () => {
                     {
                         user ?
                         <>
-                            <span className={`${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>{`${user.public_address.slice(0, 6)}...${user.public_address.slice(-4)}`}</span>
-                            <div onClick={() => setIsUserDropDownVisible(!isUserDropDownVisible)} className={iconClass('')}>
+                            <span className={`hidden md:block ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>{`${user.public_address.slice(0, 6)}...${user.public_address.slice(-4)}`}</span>
+                            <div onClick={() => setIsUserDropDownVisible(!isUserDropDownVisible)} className={iconClass('hidden md:block')}>
                                 <FaUserCircle className={`${theme === 'light' ? 'text-gray-800' : 'text-white'} ${biggerIconStyle}`} />
                             </div>
 

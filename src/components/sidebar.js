@@ -21,7 +21,7 @@ const Sidebar = () => {
         <div className={`fixed top-0 left-0 h-full transition-transform ease-out duration-300 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} w-64 z-50 shadow-2xl bg-gradient-to-r ${theme === 'light' ? 'from-white to-gray-100' : 'from-gray-900 to-black'}`}>
           
           {/* Close Button */}
-          <div className="p-4 flex justify-between md:justify-end">
+          <div className="p-4 flex justify-between items-center md:justify-end">
             <div className='md:hidden'>
               <Logo/>
             </div>
