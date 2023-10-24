@@ -19,7 +19,7 @@ function WatchList() {
 
 
 
-function UserCard({ data, theme }) {
+function UserCard({ data, theme, toggleFavorite}) {
     const isDark = theme === 'dark';
 
     const navigate = useNavigate();
@@ -42,6 +42,11 @@ function UserCard({ data, theme }) {
             maximumFractionDigits: 2
         }).format(rounded);
     }
+    
+    const removeWatchList = (e, data)=>{
+        e.stopPropagation()
+        toggleFavorite(data)
+    }
 
     return (
         <div 
@@ -50,7 +55,7 @@ function UserCard({ data, theme }) {
         >
             
             {/* Star in top right */}
-            <div className={`absolute top-2 right-2 ${isDark ? 'text-yellow-500' : 'text-yellow-400'}`}>
+            <div className={`absolute top-2 right-2 ${isDark ? 'text-yellow-500' : 'text-yellow-400'}`} onClick={(e)=>removeWatchList(e, data)}>
                 <FaStar style={{ color: 'gold', strokeWidth: '5', stroke: 'black' }} />
             </div>
 
@@ -92,7 +97,7 @@ function UserCard({ data, theme }) {
 
 
 function WatchListContent({ theme }) {
-    const { watchList, isLoading } = useWatchList();
+    const { watchList, isLoading, toggleFavorite } = useWatchList();
     // const navigate = useNavigate();
     const isDark = theme === 'dark';
 
@@ -102,7 +107,7 @@ function WatchListContent({ theme }) {
                 <h1 className={`text-2xl font-bold mb-8 ${isDark ? 'text-gray-300' : 'text-gray-900'}`}>Your WatchList:</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {watchList.map(item => (
-                        <UserCard key={item.id} data={item.friend_tech_user} theme={theme} />
+                        <UserCard key={item.id} data={item.friend_tech_user} theme={theme} toggleFavorite={toggleFavorite}/>
                     ))}
                 </div>
             </div>

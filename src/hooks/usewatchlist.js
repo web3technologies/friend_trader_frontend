@@ -10,6 +10,8 @@ export default function useWatchList(){
     const { handleSignOut } = useTheme()
     const url = `/friend-trader/watchlist/`;
 
+    console.log(watchList)
+
     const getWatchList = async () => {
 
         setLoading(true)
@@ -23,11 +25,26 @@ export default function useWatchList(){
         }
     }
 
+    const toggleFavorite = async (subject) => {
+        try{
+            console.log(subject)
+            const watchRes = await api.delete(`/friend-trader/watchlist/remove-watch/`, {data: {friend_tech_user_id: subject.id}})
+            setWatchList(prevWatchList =>{
+                return prevWatchList.filter(currSubject => currSubject.friend_tech_user.id !== subject.id)
+            })
+            
+        }
+        catch (e){
+          console.log(e)
+      }
+      };
+  
+
 
     useEffect(()=>{
         getWatchList()
         return ()=> setWatchList([])
     },[])
 
-    return { watchList, isLoading }
+    return { watchList, isLoading, toggleFavorite }
 }

@@ -1600,6 +1600,10 @@ video {
     flex-direction: row;
   }
 
+  .md\:justify-end {
+    justify-content: flex-end;
+  }
+
   .md\:pl-6 {
     padding-left: 1.5rem;
   }
