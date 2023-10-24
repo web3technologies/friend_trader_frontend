@@ -10,6 +10,7 @@ export default function useCandleStickData(twitterUsername){
     const [ userData, setUserData ] = useState({candle_stick_data: []})
     const [ candleStickInterval, setCandleStickInterval] = useState("14400")
 
+    console.log(userData)
 
     async function getData(){
       const url = `/friend-trader/friend-tech-user/${twitterUsername}/?interval=${candleStickInterval}`;
@@ -128,15 +129,20 @@ export default function useCandleStickData(twitterUsername){
     }, [userData.candle_stick_data]);
 
     
-    const watchFriendTechUser = async (friendTechUserId) =>{
+      const toggleFavorite = async (subject) => {
         try{
-            const watchRes = await api.post(`/friend-trader/watchlist/`, {friend_tech_user: friendTechUserId})
-            return watchRes.data
-          } catch (e){
-              console.log(e)
+          if (subject.is_watched){
+            const watchRes = await api.delete(`/friend-trader/watchlist/remove-watch/`, {data: {friend_tech_user_id: subject.id}})
+            setUserData({...userData, is_watched:false})
+          } else{
+            const watchRes = await api.post(`/friend-trader/watchlist/`, {friend_tech_user: subject.id})
+            setUserData({...userData, is_watched:true})
           }
+        }
+        catch (e){
+          console.log(e)
       }
-
+      };
 
     return {
         chartContainerRef,
@@ -144,7 +150,7 @@ export default function useCandleStickData(twitterUsername){
         userData,
         setCandleStickInterval,
         candleStickInterval,
-        watchFriendTechUser
+        toggleFavorite
     }
 
 }

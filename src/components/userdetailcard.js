@@ -1,15 +1,9 @@
-import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FaCopy, FaStar } from 'react-icons/fa';
 
 
-const UserDetailCard = ({ userData, extraStyles, watchFriendTechUser }) => {
-    const [isInWatchlist, setInWatchlist] = useState(false);
+const UserDetailCard = ({ userData, extraStyles, toggleFavorite }) => {
 
-    const toggleWatchlist = async (friendTechUserId) => {
-        await watchFriendTechUser(friendTechUserId)
-        setInWatchlist(!isInWatchlist);
-    }
 
     if (userData) {
         return (
@@ -32,8 +26,8 @@ const UserDetailCard = ({ userData, extraStyles, watchFriendTechUser }) => {
                                 <h1 className="text-2xl text-gray-800 dark:text-light-foreground font-semibold mb-2">{userData.twitter_username}</h1>
                                 <div className="flex items-center">
                                     <FaStar
-                                        onClick={()=>toggleWatchlist(userData.id)}
-                                        className={`cursor-pointer transform transition-transform duration-300 ${isInWatchlist ? 'text-yellow-400' : 'text-gray-400'} hover:scale-110`}
+                                        onClick={()=>toggleFavorite(userData)}
+                                        className={`cursor-pointer transform transition-transform duration-300 ${userData.is_watched ? 'text-yellow-400' : 'text-gray-400'} hover:scale-110`}
                                     />
                                 </div>
                             </div>

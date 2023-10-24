@@ -17,7 +17,7 @@ function FriendTechUserDetail(){
         userData,
         candleStickInterval,
         setCandleStickInterval,
-        watchFriendTechUser
+        toggleFavorite
     } = useCandleStickData(twitterUsername)
 
     const buttonClass = (interval) => {
@@ -42,7 +42,7 @@ function FriendTechUserDetail(){
         <div className={`flex flex-col md:flex-row items-start justify-between min-h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
 
         {/* Mobile: UserDetailCard */}
-        <UserDetailCard userData={userData} extraStyles={`sm: mb-4 md:block lg:hidden xl:hidden`} watchFriendTechUser={watchFriendTechUser}/>
+        <UserDetailCard userData={userData} extraStyles={`sm: mb-4 md:block lg:hidden xl:hidden`} toggleFavorite={toggleFavorite}/>
 
         <div className="flex-1 flex flex-col space-y-6 pr-6 ">
             <div className={`${theme === 'light' ? 'bg-white' : 'bg-dark-secondary'} p-4 rounded shadow overflow-hidden relative`}>
@@ -65,7 +65,7 @@ function FriendTechUserDetail(){
 
         <div className="space-y-6 md:pl-6"> 
             {/* Desktop: UserDetailCard */}
-            <UserDetailCard userData={userData} extraStyles={`hidden md:block`} watchFriendTechUser={watchFriendTechUser}/>
+            <UserDetailCard userData={userData} extraStyles={`hidden md:block`} toggleFavorite={toggleFavorite}/>
 
             <TradeCard/>
 
