@@ -35,14 +35,27 @@ export default function useFriendTechSubjectList(){
         }
     }
 
-    const watchFriendTechUser = async (friendTechUserId) =>{
+
+    const toggleFavorite = async (subject) => {
       try{
-          const watchRes = await api.post(`/friend-trader/watchlist/`, {friend_tech_user: friendTechUserId})
-          return watchRes.data
-        } catch (e){
-            console.log(e)
+        if (subject.is_watched){
+          const watchRes = await api.delete(`/friend-trader/watchlist/remove-watch/`, {data: {friend_tech_user_id: subject.id}})
+          setSubjects(prevSubjects =>{
+              return prevSubjects.map(currSubject => currSubject.id === subject.id ? {...currSubject, is_watched: false} : currSubject
+          )
+          })
+        } else{
+          const watchRes = await api.post(`/friend-trader/watchlist/`, {friend_tech_user: subject.id})
+          setSubjects(prevSubjects =>{
+              return prevSubjects.map(currSubject => currSubject.id === subject.id ? {...currSubject, is_watched: true} : currSubject
+          )
+          })
         }
+      }
+      catch (e){
+        console.log(e)
     }
+    };
 
 
     const fetchNextPage = async () => {
@@ -97,5 +110,5 @@ export default function useFriendTechSubjectList(){
 
     
 
-    return { subjects, isLoadingRef, watchFriendTechUser }
+    return { subjects, isLoadingRef, toggleFavorite }
 }

@@ -19,16 +19,11 @@ const Elipsis = () => (
 function SubjectTable() {
     const { theme } = useTheme();
     const navigate = useNavigate();
-    const { subjects, isLoadingRef, watchFriendTechUser } = useFriendTechSubjectList();
-    const [isFavorited, setIsFavorited] = useState(false);
+    const { subjects, isLoadingRef, toggleFavorite } = useFriendTechSubjectList();
     const [sortField, setSortField] = useState(null);
     const [sortOrder, setSortOrder] = useState(true); // true for ascending, false for descending
 
-    const toggleFavorite = async (friendTechUserId) => {
-        console.log(friendTechUserId)
-        await watchFriendTechUser(friendTechUserId)
-        // setIsFavorited(prevState => !prevState)
-    };
+    
 
     const handleSort = field => {
         if (sortField === field) {
@@ -99,8 +94,8 @@ function SubjectTable() {
                 <tbody className={`${theme === 'light' ? 'bg-white' : 'bg-gray-900'} divide-y divide-gray-200`}>
                     {subjects.length > 1 ? subjects.map((subject, idx) => (
                         <tr key={subject.twitter_username} className={`${theme === 'light' ? 'hover:bg-gray-200 text-gray-900' : 'hover:bg-gray-800 text-white'} transition-colors duration-200`}>
-                            <td className="hidden md:table-cell px-6 py-4 text-left cursor-pointer" onClick={()=> toggleFavorite(subject.id)}>
-                                <FaStar style={{ color: isFavorited ? 'gold' : 'transparent', strokeWidth: '5', stroke: 'black' }} />
+                            <td className="hidden md:table-cell px-6 py-4 text-left cursor-pointer" onClick={()=> toggleFavorite(subject)}>
+                                <FaStar style={{ color: subject.is_watched ? 'gold' : 'transparent', strokeWidth: '5', stroke: 'black' }} />
                             </td>
                             <td className="px-2 py-2 sm:px-6 sm:py-4 text-left">{idx + 1}</td>
                             <td className="px-2 py-2 sm:px-6 sm:py-4 cursor-pointer" onClick={() => navigate(`/user/${subject.twitter_username}`)}>
