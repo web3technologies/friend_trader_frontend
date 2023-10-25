@@ -6,6 +6,7 @@ import { useTheme } from '../context/ThemeContext'
 
 import Login from './Login';
 import useWatchList from '../hooks/usewatchlist';
+import { formatNumber } from '../utils/formatnumber';
 
 
 function WatchList() {
@@ -47,7 +48,6 @@ function UserCard({ data, theme, toggleFavorite}) {
         e.stopPropagation()
         toggleFavorite(data)
     }
-
     return (
         <div 
             onClick={() => navigate(`/user/${data.twitter_username}`)}
@@ -84,6 +84,7 @@ function UserCard({ data, theme, toggleFavorite}) {
 
             <div className="mt-4 space-y-2">
                 <p className={`text-gray-700 ${isDark ? 'text-gray-400' : ''}`}>Shares Supply: {data.shares_supply}</p>
+                <p className={`text-gray-700 ${isDark ? 'text-gray-400' : ''}`}>Latest Price: Ξ {formatNumber(data.latest_price.price)}</p>
                 <p className={getChangeStyle(data.twenty_four_hour_percent_change)}>
                     24 Hour Change: {formatPercent(data.twenty_four_hour_percent_change)}%
                 </p>
@@ -98,7 +99,6 @@ function UserCard({ data, theme, toggleFavorite}) {
 
 function WatchListContent({ theme }) {
     const { watchList, isLoading, toggleFavorite } = useWatchList();
-    // const navigate = useNavigate();
     const isDark = theme === 'dark';
 
     if (watchList.length > 0) {
@@ -137,10 +137,6 @@ function WatchListContent({ theme }) {
                     <p className={`${isDark ? 'text-gray-400' : 'text-gray-800'}`}>
                         No users in your watch list...
                     </p>
-                    {/* Optionally, you can add a button or link for the user to perform an action
-                    <button className={`px-4 py-2 rounded ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`} onClick={()=>{console.log("test"); navigate("");}}>
-                        Add Users
-                    </button> */}
                 </div>
             </div>
         );

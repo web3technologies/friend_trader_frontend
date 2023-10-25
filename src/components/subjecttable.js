@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FaSort, FaStar, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { formatNumber } from '../utils/formatnumber';
 
 import useFriendTechSubjectList from '../hooks/usefriendtechsubjectlist';
 
@@ -33,14 +34,6 @@ function SubjectTable() {
         }
         setSortField(field);
     };
-
-    function formatNumber(num) {
-        let rounded = Math.round(num * 10000) / 10000;
-        return new Intl.NumberFormat('en-US', {
-            minimumFractionDigits: 4,
-            maximumFractionDigits: 4
-        }).format(rounded);
-    }
 
     function formatPercent(num) {
         let rounded = Math.round(num * 10000) / 10000;
