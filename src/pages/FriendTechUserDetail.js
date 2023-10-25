@@ -40,13 +40,9 @@ function FriendTechUserDetail(){
 
     return (
         <div className={`flex flex-col md:flex-row items-start justify-between min-h-screen px-6 py-4 ${theme === 'light' ? 'bg-gray-100' : 'bg-dark-primary'}`}>
-
-        {/* Mobile: UserDetailCard */}
         <UserDetailCard userData={userData} extraStyles={`sm: mb-4 md:block lg:hidden xl:hidden`} toggleFavorite={toggleFavorite}/>
-
         <div className="flex-1 flex flex-col space-y-6 pr-6 ">
             <div className={`${theme === 'light' ? 'bg-white' : 'bg-dark-secondary'} p-4 rounded shadow overflow-hidden relative`}>
-                {/* Time Interval Select Menu */}
                 <div className="flex justify-end space-x-4 mb-4">
                     <button className={`${buttonClass("300")} transition duration-300 ease-in-out transform hover:scale-105`} onClick={() => setCandleStickInterval("300")}>5 minutes</button>
                     <button className={`${buttonClass("3600")} transition duration-300 ease-in-out transform hover:scale-105`} onClick={() => setCandleStickInterval("3600")}>1 hour</button>
@@ -54,17 +50,14 @@ function FriendTechUserDetail(){
                     <button className={`${buttonClass("86400")} transition duration-300 ease-in-out transform hover:scale-105`} onClick={() => setCandleStickInterval("86400")}>1 day</button>
                 </div>
                 <div ref={chartContainerRef}>
-                    {/* Chart will be rendered here */}
                 </div>
             </div>
 
             <div ref={rsiContainerRef} className={`${theme === 'light' ? 'bg-gradient-to-r from-white to-gray-100' : 'bg-gradient-to-r from-dark-secondary to-gray-900'} p-4 rounded shadow h-1/5 overflow-hidden relative`}>
-                {/* ... RSI content ... */}
             </div>
         </div>
 
         <div className="space-y-6 md:pl-6"> 
-            {/* Desktop: UserDetailCard */}
             <UserDetailCard userData={userData} extraStyles={`hidden md:block`} toggleFavorite={toggleFavorite}/>
 
             <TradeCard/>

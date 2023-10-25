@@ -15,7 +15,7 @@ const SearchInput = ({ isModal }) => {
     }
     
     return (
-        <div className={`relative ${isModal ? '' : `w-full md:w-2/3 `} hidden md:flex`}>
+        <div className={`relative ${isModal ? '' : `w-full md:w-2/3 `}`}>
             <input
                 autoFocus={isModal}
                 className={`pl-10 pr-4 py-3 text-lg rounded w-full bg-opacity-50 backdrop-blur-md border border-transparent focus:border focus:border-indigo-500 transition-all ${theme === 'light' ? 'bg-white text-gray-800 placeholder-gray-500' : 'bg-black text-white placeholder-gray-300'}`}

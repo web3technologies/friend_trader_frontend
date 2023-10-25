@@ -10,8 +10,6 @@ export default function useCandleStickData(twitterUsername){
     const [ userData, setUserData ] = useState({candle_stick_data: []})
     const [ candleStickInterval, setCandleStickInterval] = useState("14400")
 
-    console.log(userData)
-
     async function getData(){
       const url = `/friend-trader/friend-tech-user/${twitterUsername}/?interval=${candleStickInterval}`;
       try {
@@ -28,12 +26,16 @@ export default function useCandleStickData(twitterUsername){
     
     useEffect(() => {
 
+        const isMobile = window.innerWidth <= 768;
+
+        const mobileMultiplier = isMobile ? .8 : .65
+    
       const chart = createChart(chartContainerRef.current, {
-        width: window.innerWidth * .65,
-        height: window.innerHeight * 0.6, 
+        width: window.innerWidth * mobileMultiplier,
+        height: window.innerHeight * (isMobile ? .8 : .6), 
           timeScale: {
-              rightOffset: 50,
-              barSpacing: 3,
+              rightOffset: isMobile ? 25 : 50,
+              barSpacing: isMobile ? 1 : 3,
               // fixLeftEdge: true,
           },
           layout: {
@@ -51,11 +53,11 @@ export default function useCandleStickData(twitterUsername){
       });
 
       const rsiChart = createChart(rsiContainerRef.current, {
-        width: window.innerWidth * .65,
+        width: window.innerWidth * mobileMultiplier,
         height: window.innerHeight * 0.14,  // Taking 20% of 0.7 which was originally used
         timeScale: {
-            rightOffset: 50,
-            barSpacing: 3,
+            rightOffset: isMobile ? 25 : 50,
+            barSpacing: isMobile ? 1 : 3,
             borderColor: '#555',
         },
         layout: {

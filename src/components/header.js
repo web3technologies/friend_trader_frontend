@@ -53,7 +53,7 @@ const Header = () => {
                 <Logo/>
             </div>
             {/* Desktop Search Component */}
-            <SearchInput isModal={false} className="flex-grow mx-4 md:mx-8 hidden md:block" />
+            <SearchInput isModal={false} className="flex-grow mx-4 md:mx-8 " />
 
             <div className="flex items-center space-x-4">
                 <div className="flex space-x-2 items-center">
