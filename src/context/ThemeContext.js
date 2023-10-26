@@ -13,6 +13,7 @@ const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const {user, handleSignIn, handleSignOut } = useWeb3Auth()
+  const [ showLogin, setShowLogin ] = useState(false)
 
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
@@ -25,7 +26,7 @@ const ThemeProvider = ({ children }) => {
   return (
     <ThemeContext.Provider 
       value={
-        {theme, toggleTheme, isSidebarOpen, toggleSidebarOpen, user, handleSignIn, handleSignOut }
+        {theme, toggleTheme, isSidebarOpen, toggleSidebarOpen, user, handleSignIn, handleSignOut, showLogin, setShowLogin }
       }
     >
       {children}

@@ -11,9 +11,13 @@ import BlockDetail from './pages/BlockDetail';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import WatchList from './pages/WatchList';
-
+import Login from './pages/Login';
+import { useTheme } from './context/ThemeContext';
 
 function App() {
+
+    const { showLogin } = useTheme()
+    
     return (
         <>
             <BrowserRouter>
@@ -28,6 +32,7 @@ function App() {
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
                 <Footer/>
+                {showLogin && <Login />}
             </BrowserRouter>
         </>
     )

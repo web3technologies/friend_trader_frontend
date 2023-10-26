@@ -18,7 +18,7 @@ const Elipsis = () => (
 
 
 function SubjectTable() {
-    const { theme } = useTheme();
+    const { theme, user } = useTheme();
     const navigate = useNavigate();
     const { subjects, isLoadingRef, toggleFavorite } = useFriendTechSubjectList();
     const [sortField, setSortField] = useState(null);
@@ -57,7 +57,7 @@ function SubjectTable() {
             <table className={`min-w-full rounded shadow divide-y ${theme === 'light' ? 'bg-white' : 'bg-gray-900'}`}>
                 <thead className={`bg-gradient-to-r ${theme === 'light' ? 'from-white to-gray-100' : 'from-gray-900 to-black'}`}>
                     <tr>
-                        <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"></th>
+                        <th className="md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"></th>
                         <th className="px-2 py-2 sm:px-6 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" onClick={() => handleSort('name')}>
                             # <FaSort />
                         </th>
@@ -87,10 +87,10 @@ function SubjectTable() {
                 <tbody className={`${theme === 'light' ? 'bg-white' : 'bg-gray-900'} divide-y divide-gray-200`}>
                     {subjects.length > 1 ? subjects.map((subject, idx) => (
                         <tr key={subject.twitter_username} className={`${theme === 'light' ? 'hover:bg-gray-200 text-gray-900' : 'hover:bg-gray-800 text-white'} transition-colors duration-200`}>
-                            <td className="hidden md:table-cell px-6 py-4 text-left cursor-pointer" onClick={()=> toggleFavorite(subject)}>
+                            <td className=" md:table-cell px-6 py-4 text-left cursor-pointer" onClick={()=> toggleFavorite(subject)}>
                                 <FaStar style={{ color: subject.is_watched ? 'gold' : 'transparent', strokeWidth: '5', stroke: 'black' }} />
                             </td>
-                            <td className="px-2 py-2 sm:px-6 sm:py-4 text-left">{idx + 1}</td>
+                            <td className="px-2 py-6 sm:px-6 sm:py-8 text-left">{idx + 1}</td>
                             <td className="px-2 py-2 sm:px-6 sm:py-4 cursor-pointer" onClick={() => navigate(`/user/${subject.twitter_username}`)}>
                                 <div className="flex items-center">
                                     <img src={subject.twitter_profile_pic} alt={`${subject.twitter_username} logo`} className="h-6 w-6 mr-4" />
@@ -98,7 +98,7 @@ function SubjectTable() {
                                 </div>
                             </td>
                             <td className="hidden md:table-cell px-6 py-4 text-left">{new Date(subject.last_trade_time * 1000).toLocaleString()}</td>
-                            <td className="px-2 py-2 sm:px-6 sm:py-4 text-right">Ξ {formatNumber(subject.latest_price.price)}</td>
+                            <td className={`px-2 py-2 sm:px-6 sm:py-4 text-right ${subject.latest_price.is_buy ? "text-green-500": "text-red-500"}`}>Ξ {formatNumber(subject.latest_price.price)}</td>
                             <td className="hidden md:table-cell px-6 py-4 text-right">
                                 <div className="flex items-center">
                                     {subject.twenty_four_hour_percent_change > 0 ? 

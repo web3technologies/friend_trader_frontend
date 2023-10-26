@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { debounce } from 'lodash'; 
 
 import api from '../settings/api';
-
+import { useTheme } from "../context/ThemeContext";
 
 export default function useFriendTechSubjectList(){
 
@@ -15,6 +15,8 @@ export default function useFriendTechSubjectList(){
     })
     const isLoadingRef = useRef(true);
     const pageDataRef = useRef(pageData);
+
+    const { setShowLogin, user } = useTheme() 
 
     const getData = async () => {
 
@@ -37,6 +39,10 @@ export default function useFriendTechSubjectList(){
 
 
     const toggleFavorite = async (subject) => {
+      if (!user){
+        setShowLogin(true)
+        return
+      }
       try{
         if (subject.is_watched){
           const watchRes = await api.delete(`/friend-trader/watchlist/remove-watch/`, {data: {friend_tech_user_id: subject.id}})

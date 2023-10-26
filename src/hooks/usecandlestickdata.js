@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { createChart } from 'lightweight-charts';
 import { RSI } from 'technicalindicators';
 import api from "../settings/api";
+import { useTheme } from "../context/ThemeContext";
 
 
 export default function useCandleStickData(twitterUsername){
@@ -9,7 +10,9 @@ export default function useCandleStickData(twitterUsername){
     const rsiContainerRef = useRef(null);
     const [ userData, setUserData ] = useState({candle_stick_data: []})
     const [ candleStickInterval, setCandleStickInterval] = useState("14400")
+    const { setShowLogin, user } = useTheme()
 
+    
     async function getData(){
       const url = `/friend-trader/friend-tech-user/${twitterUsername}/?interval=${candleStickInterval}`;
       try {
@@ -132,6 +135,12 @@ export default function useCandleStickData(twitterUsername){
 
     
       const toggleFavorite = async (subject) => {
+
+        if(!user){
+            setShowLogin(true)
+            return
+        }
+
         try{
           if (subject.is_watched){
             const watchRes = await api.delete(`/friend-trader/watchlist/remove-watch/`, {data: {friend_tech_user_id: subject.id}})

@@ -24,6 +24,9 @@ module.exports = {
       },
       animation: {
         'spin-slow': 'spin 3s linear infinite',
+      },
+      width: {
+        '9/10': "90%"
       }
     },
     fontFamily: {

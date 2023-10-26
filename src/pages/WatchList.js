@@ -10,9 +10,9 @@ import { formatNumber } from '../utils/formatnumber';
 
 
 function WatchList() {
-    const { user, handleSignIn, theme } = useTheme();
+    const { user, theme } = useTheme();
     if (!user) {
-        return <Login handleSignIn={handleSignIn}/>;
+        return <Login/>;
     }
 
     return <WatchListContent theme={theme}/>;
