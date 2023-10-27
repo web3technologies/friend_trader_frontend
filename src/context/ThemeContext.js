@@ -12,7 +12,7 @@ export const useTheme = () => {
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const {user, handleSignIn, handleSignOut } = useWeb3Auth()
+  const {user, handleSignIn, handleSignOut, errorMsg } = useWeb3Auth()
   const [ showLogin, setShowLogin ] = useState(false)
 
   const toggleTheme = () => {
@@ -26,7 +26,7 @@ const ThemeProvider = ({ children }) => {
   return (
     <ThemeContext.Provider 
       value={
-        {theme, toggleTheme, isSidebarOpen, toggleSidebarOpen, user, handleSignIn, handleSignOut, showLogin, setShowLogin }
+        {theme, toggleTheme, isSidebarOpen, toggleSidebarOpen, user, handleSignIn, handleSignOut, showLogin, setShowLogin, errorMsg }
       }
     >
       {children}

@@ -6,9 +6,11 @@ import api from '../settings/api';
 
 import { baseURL } from '../settings/urls';
 
+
 const useWeb3Auth = () => {
 
   const [ user, setUser ] = useState()
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
       
@@ -34,7 +36,16 @@ const useWeb3Auth = () => {
     }
 }, [])
 
+  useEffect(()=>{
+    if (!window.ethereum) {
+      setErrorMsg('Please install MetaMask to continue. You can download it from here.');
+      return;
+    }
+  }
+  )
+
   const handleSignIn = async () => {
+    
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new BrowserProvider(connection)
@@ -69,7 +80,7 @@ const useWeb3Auth = () => {
   }
 
 
-  return { handleSignIn, handleSignOut, user};
+  return { handleSignIn, handleSignOut, user, errorMsg};
 };
 
 export default useWeb3Auth;
