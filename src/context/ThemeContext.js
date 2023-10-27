@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import useWeb3Auth from '../hooks/usemetamask';
 
+
 const ThemeContext = createContext();
 
 
@@ -14,7 +15,7 @@ const ThemeProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const {user, handleSignIn, handleSignOut, errorMsg } = useWeb3Auth()
   const [ showLogin, setShowLogin ] = useState(false)
-
+  
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
   };

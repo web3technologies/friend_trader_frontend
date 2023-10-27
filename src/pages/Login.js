@@ -2,16 +2,21 @@ import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 import logo from "../images/friend_trader_logo.jpg"
 
-function Login() {
 
+function Login() {
     const { setShowLogin, handleSignIn, errorMsg } = useTheme()
 
+    function handleShowLogin(){
+        setShowLogin(false)
+        window.location.href = "/"
+      }
+
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md z-50 flex items-center justify-center" onClick={() => setShowLogin(false)}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md z-50 flex items-center justify-center" onClick={() => handleShowLogin()}>
             <div className="rounded-lg shadow-2xl bg-white max-w-md w-full p-6 space-y-6 relative">
                 
                 <button 
-                    onClick={() => setShowLogin(false)} 
+                    onClick={() => handleShowLogin()} 
                     className="absolute top-2 right-2 text-red-500 font-bold text-3xl hover:text-red-600"
                     aria-label="Close modal"
                 >
