@@ -7,7 +7,7 @@ const UserDetailCard = ({ userData, extraStyles, toggleFavorite }) => {
 
     if (userData) {
         return (
-            <div className={`max-w-md w-full bg-white dark:bg-dark-secondary rounded-lg shadow-md overflow-hidden ${extraStyles} group`}>
+            <div className={`max-w-md w-full bg-white rounded-lg shadow-md overflow-hidden ${extraStyles} group`}>
                 {userData.twitter_profile_banner && (
                     <div 
                         className="w-full h-24 bg-cover bg-center" 

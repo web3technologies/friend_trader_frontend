@@ -7,7 +7,7 @@ const ComingSoonModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
     return (
         <div className="fixed z-50 top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300">
-            <div className="bg-white dark:bg-dark-secondary p-6 rounded-lg shadow-lg transform transition-transform duration-300 scale-95" style={{ maxWidth: '90%' }}>
+            <div className="bg-white  p-6 rounded-lg shadow-lg transform transition-transform duration-300 scale-95" style={{ maxWidth: '90%' }}>
                 {/* Close Icon */}
                 <div className="absolute top-2 right-2">
                     <button onClick={onClose} className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full">
@@ -43,7 +43,7 @@ const TradeCard = ({address}) => {
     const { buyShares, sellShares } = useTrade()
 
     return (
-        <div className="max-w-md w-full mt-8 bg-white dark:bg-dark-secondary rounded-lg shadow-md overflow-hidden">
+        <div className="max-w-md w-full mt-8 bg-white rounded-lg shadow-md overflow-hidden">
             <div className="p-4 space-y-4">
                 <h2 className="text-2xl text-gray-800 dark:text-light-foreground font-semibold mb-2 text-center">Trade Shares</h2>
                 

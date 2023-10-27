@@ -27,7 +27,7 @@ const SearchInput = ({ isModal }) => {
             <FaSearch className={`absolute top-1/2 transform -translate-y-1/2 left-3 ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`} />
             {
                 userList.length > 0 && (
-                    <div className={`absolute top-full mt-2 w-full bg-white dark:bg-dark-secondary rounded shadow-lg overflow-y-auto max-h-64 z-10 ${userList && userList.length > 0 ? 'block' : 'hidden'}`}>
+                    <div className={`absolute top-full mt-2 w-full bg-white  rounded shadow-lg overflow-y-auto max-h-64 z-10 ${userList && userList.length > 0 ? 'block' : 'hidden'}`}>
                     {userList.map(user => (
                         <div key={user.twitter_username} className="flex items-center p-3 hover:bg-gray-100 dark:hover:bg-dark-primary cursor-pointer" onClick={()=>handleNavigate(`/user/${user.twitter_username}`)}>
                             <img src={user.twitter_profile_pic} alt="User Profile" className="w-12 h-12 rounded-full object-cover mr-4" />

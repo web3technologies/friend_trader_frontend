@@ -11,7 +11,7 @@ const TradeList = (address)=>{
     }
 
     return (
-        <div className="max-w-md w-full mt-8 bg-white dark:bg-dark-secondary rounded-lg shadow-md overflow-hidden">
+        <div className="max-w-md w-full mt-8 bg-white rounded-lg shadow-md overflow-hidden">
             <h2 className="text-2xl text-gray-800 dark:text-light-foreground font-semibold mb-2 px-4 py-2 border-b border-gray-300 dark:border-gray-600">Recent Trades</h2>
             <div className="overflow-y-auto" style={{ maxHeight: '300px' }}>
                 { trades.length > 0 ? trades.map((trade, index) => (
