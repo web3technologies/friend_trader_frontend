@@ -19,15 +19,21 @@ function Login() {
                             &times;
                         </button>
                         <h1 className="text-2xl font-bold mb-6 text-center">Friend Trader</h1>
+                    
+                        <p className="mb-4 text-center text-gray-700">
+                            Connect with MetaMask to access this feature
+                        </p>
+                        
                         <button 
                             onClick={handleSignIn}
                             className="w-full py-3 rounded-lg bg-blue-600 text-white text-center font-bold hover:bg-blue-700 transition-colors duration-300"
                         >
-                            Login with MetaMask
+                            Connect with MetaMask
                         </button>
                     </div>
                 </div>
             </div>
+
             
         </>
     );
