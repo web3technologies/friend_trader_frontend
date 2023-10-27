@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import useTrade from '../hooks/usetrade';
+
 
 const ComingSoonModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
@@ -26,8 +28,9 @@ const ComingSoonModal = ({ isOpen, onClose }) => {
 }
 
 
-const TradeCard = () => {
+const TradeCard = ({address}) => {
     const [isModalOpen, setModalOpen] = useState(false);
+    const [ shareCount, setShareCount ] = useState(0)
 
     const handleButtonClick = () => {
         setModalOpen(true);
@@ -36,6 +39,8 @@ const TradeCard = () => {
     const closeModal = () => {
         setModalOpen(false);
     };
+
+    const { buyShares, sellShares } = useTrade()
 
     return (
         <div className="max-w-md w-full mt-8 bg-white dark:bg-dark-secondary rounded-lg shadow-md overflow-hidden">
@@ -48,6 +53,7 @@ const TradeCard = () => {
                         type="number"
                         placeholder="Enter amount"
                         className="flex-grow px-3 py-2 rounded border border-gray-300 dark:border-gray-600 focus:border-indigo-500 focus:ring focus:ring-indigo-200 dark:focus:ring-indigo-700 w-2/3 transition-all"
+                        onChange={(e)=>setShareCount(e.target.value)}
                     />
 
                     {/* Buy Button */}

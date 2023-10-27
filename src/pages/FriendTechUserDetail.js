@@ -60,7 +60,7 @@ function FriendTechUserDetail(){
         <div className="space-y-6 md:pl-6"> 
             <UserDetailCard userData={userData} extraStyles={`hidden md:block`} toggleFavorite={toggleFavorite}/>
 
-            <TradeCard/>
+            <TradeCard address={userData.address}/>
 
             <TradeList address={userData.address}/>
         </div>
